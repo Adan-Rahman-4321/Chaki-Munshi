@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1f1b13",
+                        "surface-container": "#f5eddf",
+                        "secondary": "#4e6169",
+                        "surface-dim": "#e1d9cc",
+                        "secondary-container": "#d1e6ef",
+                        "secondary-fixed-dim": "#b5cad3",
+                        "tertiary-container": "#97b0ff",
+                        "surface-bright": "#fff8f0",
+                        "inverse-on-surface": "#f8f0e2",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#554300",
+                        "on-error": "#ffffff",
+                        "danger-red": "#D32F2F",
+                        "secondary-fixed": "#d1e6ef",
+                        "outline": "#7f7663",
+                        "surface-container-low": "#fbf3e5",
+                        "wheat-light": "#F9F5E8",
+                        "success-green": "#2E7D32",
+                        "primary-fixed": "#ffe088",
+                        "on-secondary-fixed-variant": "#374a51",
+                        "surface-gray": "#F4F7F6",
+                        "inverse-primary": "#e9c349",
+                        "tertiary": "#415ba4",
+                        "on-primary-fixed": "#241a00",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#b4c5ff",
+                        "on-background": "#1f1b13",
+                        "on-surface-variant": "#4d4635",
+                        "on-primary-fixed-variant": "#574500",
+                        "inverse-surface": "#343027",
+                        "primary-container": "#d4af37",
+                        "on-tertiary-container": "#254188",
+                        "on-tertiary-fixed-variant": "#27438a",
+                        "tertiary-fixed": "#dbe1ff",
+                        "surface-container-highest": "#eae1d4",
+                        "on-secondary-container": "#54676f",
+                        "outline-variant": "#d0c5af",
+                        "on-secondary-fixed": "#0a1e25",
+                        "on-tertiary-fixed": "#00174b",
+                        "surface-variant": "#eae1d4",
+                        "primary": "#735c00",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#efe7da",
+                        "surface": "#fff8f0",
+                        "surface-tint": "#735c00",
+                        "primary-fixed-dim": "#e9c349",
+                        "background": "#fff8f0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "container-margin": "16px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "stack-lg": "24px",
+                        "gutter": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "urdu-support": ["Hanken Grotesk"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "urdu-support": ["18px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .urdu-text { font-family: 'Hanken Grotesk', sans-serif; direction: rtl; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-gray min-h-screen text-on-surface font-body-md">
+<!-- Top Navigation Bar -->
+<header class="w-full top-0 sticky z-50 bg-surface dark:bg-surface-dim flex justify-between items-center px-container-margin py-stack-sm border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-stack-md">
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-low transition-colors active:opacity-80">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<h1 class="font-headline-md text-headline-md-mobile text-primary leading-tight">Customer History</h1>
+<span class="urdu-text text-[12px] leading-none opacity-70">گاہک کی تفصیلات</span>
+</div>
+</div>
+<button class="px-stack-md py-stack-sm rounded-lg border border-outline text-on-surface font-label-caps hover:bg-surface-container-low transition-colors">
+            اردو
+        </button>
+</header>
+<main class="pb-24">
+<!-- Profile Header Section -->
+<section class="px-container-margin py-stack-lg bg-surface flex flex-col items-center">
+<div class="w-24 h-24 rounded-full bg-primary-container flex items-center justify-center mb-stack-md relative">
+<span class="material-symbols-outlined text-[48px] text-on-primary-container">person</span>
+<div class="absolute bottom-0 right-0 bg-success-green w-6 h-6 rounded-full border-2 border-surface"></div>
+</div>
+<div class="text-center mb-stack-lg">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Malik Muhammad Hanif</h2>
+<p class="text-secondary font-body-md">+92 300 1234567</p>
+<div class="mt-stack-md bg-error-container/20 border border-error/20 rounded-xl px-stack-lg py-stack-sm inline-block">
+<p class="text-label-caps text-secondary mb-1">PENDING UDHAAR / ادھار</p>
+<p class="text-danger-red font-headline-md text-headline-md-mobile">Rs. 12,450</p>
+</div>
+</div>
+<!-- Action Buttons Grid -->
+<div class="grid grid-cols-2 gap-stack-md w-full max-w-md">
+<button class="flex items-center justify-center gap-2 bg-primary text-on-primary py-stack-md rounded-xl font-headline-md text-headline-md-mobile shadow-md active:scale-95 transition-transform">
+<span class="material-symbols-outlined">call</span>
+<span>Call</span>
+</button>
+<button class="flex items-center justify-center gap-2 border-2 border-success-green text-success-green py-stack-md rounded-xl font-headline-md text-headline-md-mobile active:scale-95 transition-transform">
+<span class="material-symbols-outlined">receipt_long</span>
+<span>WhatsApp</span>
+</button>
+</div>
+</section>
+<!-- Summary Bento Grid -->
+<section class="px-container-margin py-stack-lg">
+<div class="grid grid-cols-2 gap-gutter">
+<!-- Wheat Summary -->
+<div class="bg-surface-container-low border border-outline-variant p-stack-md rounded-2xl">
+<div class="flex justify-between items-start mb-stack-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">grass</span>
+<span class="text-label-caps text-secondary">WHEAT (گندم)</span>
+</div>
+<div class="mt-2">
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-primary">840 kg</p>
+<p class="text-[12px] text-on-surface-variant opacity-60">Total Brought</p>
+</div>
+</div>
+<!-- Flour Summary -->
+<div class="bg-secondary-container/30 border border-secondary-fixed-dim p-stack-md rounded-2xl">
+<div class="flex justify-between items-start mb-stack-sm">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">bakery_dining</span>
+<span class="text-label-caps text-secondary">FLOUR (آٹا)</span>
+</div>
+<div class="mt-2">
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-secondary">612 kg</p>
+<p class="text-[12px] text-on-surface-variant opacity-60">Total Issued</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Chronological Timeline -->
+<section class="px-container-margin">
+<div class="flex justify-between items-center mb-stack-md">
+<h3 class="font-headline-md text-headline-md-mobile">Recent Activity</h3>
+<span class="material-symbols-outlined text-outline">filter_list</span>
+</div>
+<div class="space-y-stack-md relative">
+<!-- Timeline Line -->
+<div class="absolute left-4 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
+<!-- Timeline Item: Wheat Entry -->
+<div class="relative pl-10">
+<div class="absolute left-1 top-2 w-6 h-6 rounded-full bg-primary flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[14px] text-on-primary">add</span>
+</div>
+<div class="bg-surface border border-outline-variant rounded-xl p-stack-md shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="font-headline-md text-headline-md-mobile">Wheat Deposit</p>
+<p class="text-label-caps text-on-surface-variant">24 Oct 2023 • 11:30 AM</p>
+</div>
+<span class="bg-success-green/10 text-success-green text-[10px] px-2 py-1 rounded font-bold uppercase">PAID</span>
+</div>
+<div class="flex justify-between items-end border-t border-dashed border-outline-variant pt-2 mt-2">
+<div>
+<p class="text-label-caps text-secondary uppercase">Weight</p>
+<p class="font-bold text-lg">120 kg</p>
+</div>
+<div class="text-right">
+<p class="text-label-caps text-secondary uppercase">Grinding Fee</p>
+<p class="font-bold text-lg">Rs. 600</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Item: Atta Issue -->
+<div class="relative pl-10">
+<div class="absolute left-1 top-2 w-6 h-6 rounded-full bg-secondary flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[14px] text-on-secondary">remove</span>
+</div>
+<div class="bg-surface border border-outline-variant rounded-xl p-stack-md shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="font-headline-md text-headline-md-mobile">Atta Withdrawal</p>
+<p class="text-label-caps text-on-surface-variant">22 Oct 2023 • 04:15 PM</p>
+</div>
+<span class="bg-error/10 text-danger-red text-[10px] px-2 py-1 rounded font-bold uppercase">UDHAAR</span>
+</div>
+<div class="flex justify-between items-end border-t border-dashed border-outline-variant pt-2 mt-2">
+<div>
+<p class="text-label-caps text-secondary uppercase">Weight</p>
+<p class="font-bold text-lg">40 kg</p>
+</div>
+<div class="text-right">
+<p class="text-label-caps text-secondary uppercase">Remaining Wheat</p>
+<p class="font-bold text-lg">720 kg</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Item: Wheat Entry -->
+<div class="relative pl-10">
+<div class="absolute left-1 top-2 w-6 h-6 rounded-full bg-primary flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[14px] text-on-primary">add</span>
+</div>
+<div class="bg-surface border border-outline-variant rounded-xl p-stack-md shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="font-headline-md text-headline-md-mobile">Wheat Deposit</p>
+<p class="text-label-caps text-on-surface-variant">15 Oct 2023 • 09:00 AM</p>
+</div>
+<span class="bg-success-green/10 text-success-green text-[10px] px-2 py-1 rounded font-bold uppercase">PAID</span>
+</div>
+<div class="flex justify-between items-end border-t border-dashed border-outline-variant pt-2 mt-2">
+<div>
+<p class="text-label-caps text-secondary uppercase">Weight</p>
+<p class="font-bold text-lg">500 kg</p>
+</div>
+<div class="text-right">
+<p class="text-label-caps text-secondary uppercase">Total Amount</p>
+<p class="font-bold text-lg">Rs. 2,500</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-16 pb-safe border-t border-outline-variant bg-surface dark:bg-surface-container-low">
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit hover:bg-surface-container-high active:scale-95 transition-transform">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Stats</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-stack-md py-unit active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-label-caps text-label-caps">Customers</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit hover:bg-surface-container-high active:scale-95 transition-transform">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-caps text-label-caps">Entries</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit hover:bg-surface-container-high active:scale-95 transition-transform">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-caps text-label-caps">Reports</span>
+</div>
+</nav>
+<!-- Floating Action Button for New Entry -->
+<button class="fixed bottom-20 right-4 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center z-40 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+<script>
+        // Micro-interaction: Header scroll shadow
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+
+        // Simple Urdu toggle simulation
+        let isUrdu = false;
+        const toggleBtn = document.querySelector('header button.font-label-caps');
+        toggleBtn.addEventListener('click', () => {
+            isUrdu = !isUrdu;
+            toggleBtn.textContent = isUrdu ? 'English' : 'اردو';
+            // In a real app, this would trigger a language provider
+        });
+    </script>
+</body></html>

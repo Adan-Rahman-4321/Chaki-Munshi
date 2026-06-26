@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Transactions - Chaki Munshi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1f1b13",
+                        "surface-container": "#f5eddf",
+                        "secondary": "#4e6169",
+                        "surface-dim": "#e1d9cc",
+                        "secondary-container": "#d1e6ef",
+                        "secondary-fixed-dim": "#b5cad3",
+                        "tertiary-container": "#97b0ff",
+                        "surface-bright": "#fff8f0",
+                        "inverse-on-surface": "#f8f0e2",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#554300",
+                        "on-error": "#ffffff",
+                        "danger-red": "#D32F2F",
+                        "secondary-fixed": "#d1e6ef",
+                        "outline": "#7f7663",
+                        "surface-container-low": "#fbf3e5",
+                        "wheat-light": "#F9F5E8",
+                        "success-green": "#2E7D32",
+                        "primary-fixed": "#ffe088",
+                        "on-secondary-fixed-variant": "#374a51",
+                        "surface-gray": "#F4F7F6",
+                        "inverse-primary": "#e9c349",
+                        "tertiary": "#415ba4",
+                        "on-primary-fixed": "#241a00",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#b4c5ff",
+                        "on-background": "#1f1b13",
+                        "on-surface-variant": "#4d4635",
+                        "on-primary-fixed-variant": "#574500",
+                        "inverse-surface": "#343027",
+                        "primary-container": "#d4af37",
+                        "on-tertiary-container": "#254188",
+                        "on-tertiary-fixed-variant": "#27438a",
+                        "tertiary-fixed": "#dbe1ff",
+                        "surface-container-highest": "#eae1d4",
+                        "on-secondary-container": "#54676f",
+                        "outline-variant": "#d0c5af",
+                        "on-secondary-fixed": "#0a1e25",
+                        "on-tertiary-fixed": "#00174b",
+                        "surface-variant": "#eae1d4",
+                        "primary": "#735c00",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#efe7da",
+                        "surface": "#fff8f0",
+                        "surface-tint": "#735c00",
+                        "primary-fixed-dim": "#e9c349",
+                        "background": "#fff8f0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "container-margin": "16px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "stack-lg": "24px",
+                        "gutter": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "urdu-support": ["Hanken Grotesk"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "urdu-support": ["18px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .urdu-text { font-family: 'Hanken Grotesk', sans-serif; direction: rtl; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #d0c5af; border-radius: 10px; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim w-full top-0 sticky z-40 flex justify-between items-center px-container-margin py-stack-sm w-full">
+<div class="flex items-center gap-stack-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container overflow-hidden">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md-mobile text-primary dark:text-primary-fixed-dim">Chaki Munshi</h1>
+</div>
+</div>
+<button class="px-stack-md py-stack-sm rounded-lg border border-outline-variant text-primary font-bold hover:bg-surface-container-low transition-colors active:opacity-80">
+            اردو
+        </button>
+</header>
+<main class="flex-1 pb-24 overflow-y-auto custom-scrollbar">
+<!-- Search and Filter Section -->
+<div class="px-container-margin py-stack-lg space-y-stack-md">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full h-12 pl-12 pr-4 rounded-xl border border-outline-variant bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none font-body-md text-body-md" placeholder="Search Invoice or Customer..." type="text"/>
+</div>
+<!-- Bilingual Header -->
+<div class="flex justify-between items-end">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-wider">Recent Transactions</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">لین دین کی تفصیل</h2>
+</div>
+<div class="flex gap-stack-sm">
+<button class="p-2 rounded-lg bg-surface-container-high text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined">tune</span>
+</button>
+</div>
+</div>
+<!-- Filter Tabs -->
+<div class="flex gap-stack-sm overflow-x-auto no-scrollbar py-2">
+<button class="px-stack-lg py-stack-sm rounded-full bg-primary text-on-primary font-bold whitespace-nowrap active:scale-95 transition-all">All / تمام</button>
+<button class="px-stack-lg py-stack-sm rounded-full bg-surface-container-high text-on-surface-variant font-medium whitespace-nowrap active:scale-95 transition-all">Wheat / گندم</button>
+<button class="px-stack-lg py-stack-sm rounded-full bg-surface-container-high text-on-surface-variant font-medium whitespace-nowrap active:scale-95 transition-all">Atta / آٹا</button>
+</div>
+</div>
+<!-- Transactions List -->
+<div class="px-container-margin space-y-stack-md">
+<!-- Transaction Card 1: Udhaar -->
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant shadow-sm flex flex-col gap-stack-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-stack-sm">
+<div class="p-2 rounded-lg bg-error-container text-error">
+<span class="material-symbols-outlined">history_edu</span>
+</div>
+<div>
+<p class="font-headline-md text-headline-md leading-tight">Ahmed Khan</p>
+<p class="font-label-caps text-label-caps text-outline uppercase">INV-8821 • 10:45 AM</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-headline-md text-headline-md text-danger-red">Rs. 4,500</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-error-container text-error uppercase tracking-tighter">Udhaar / ادھار</span>
+</div>
+</div>
+<div class="flex justify-between items-center pt-stack-sm border-t border-outline-variant">
+<span class="font-body-md text-body-md text-secondary">40kg Wheat (گندم)</span>
+<button class="text-primary font-bold flex items-center gap-1 active:opacity-70">
+<span class="text-label-caps">DETAILS</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Transaction Card 2: Completed -->
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant shadow-sm flex flex-col gap-stack-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-stack-sm">
+<div class="p-2 rounded-lg bg-secondary-container text-on-secondary-container">
+<span class="material-symbols-outlined">shopping_cart</span>
+</div>
+<div>
+<p class="font-headline-md text-headline-md leading-tight">Zubair Malik</p>
+<p class="font-label-caps text-label-caps text-outline uppercase">INV-8820 • 09:12 AM</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-headline-md text-headline-md text-success-green">Rs. 1,200</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-success-green uppercase tracking-tighter">Paid / ادا شدہ</span>
+</div>
+</div>
+<div class="flex justify-between items-center pt-stack-sm border-t border-outline-variant">
+<span class="font-body-md text-body-md text-secondary">10kg Atta (آٹا)</span>
+<button class="text-primary font-bold flex items-center gap-1 active:opacity-70">
+<span class="text-label-caps">DETAILS</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Transaction Card 3: Pending -->
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant shadow-sm flex flex-col gap-stack-sm hover:shadow-md transition-shadow opacity-90">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-stack-sm">
+<div class="p-2 rounded-lg bg-surface-container-highest text-outline">
+<span class="material-symbols-outlined">pending_actions</span>
+</div>
+<div>
+<p class="font-headline-md text-headline-md leading-tight">Bashir &amp; Co.</p>
+<p class="font-label-caps text-label-caps text-outline uppercase">INV-8819 • Yesterday</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-headline-md text-headline-md text-on-surface-variant">Rs. 12,800</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-surface-container-high text-on-surface-variant uppercase tracking-tighter">Pending / زیر التواء</span>
+</div>
+</div>
+<div class="flex justify-between items-center pt-stack-sm border-t border-outline-variant">
+<span class="font-body-md text-body-md text-secondary">Bulk Wheat (گندم)</span>
+<button class="text-primary font-bold flex items-center gap-1 active:opacity-70">
+<span class="text-label-caps">DETAILS</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Transaction Card 4: Udhaar -->
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant shadow-sm flex flex-col gap-stack-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-stack-sm">
+<div class="p-2 rounded-lg bg-error-container text-error">
+<span class="material-symbols-outlined">history_edu</span>
+</div>
+<div>
+<p class="font-headline-md text-headline-md leading-tight">Mohammad Rafiq</p>
+<p class="font-label-caps text-label-caps text-outline uppercase">INV-8818 • Yesterday</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-headline-md text-headline-md text-danger-red">Rs. 850</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-error-container text-error uppercase tracking-tighter">Udhaar / ادھار</span>
+</div>
+</div>
+<div class="flex justify-between items-center pt-stack-sm border-t border-outline-variant">
+<span class="font-body-md text-body-md text-secondary">Grinding Fee (پسائی)</span>
+<button class="text-primary font-bold flex items-center gap-1 active:opacity-70">
+<span class="text-label-caps">DETAILS</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Visual Spacer -->
+<div class="h-24"></div>
+</main>
+<!-- FAB for New Entry (Contextual) -->
+<button class="fixed bottom-24 right-container-margin w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 border-t border-outline-variant bg-surface dark:bg-surface-container-low flex justify-around items-center w-full h-16 pb-safe">
+<!-- Stats -->
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit hover:bg-surface-container-high active:scale-95 transition-transform">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Stats</span>
+</button>
+<!-- Customers -->
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit hover:bg-surface-container-high active:scale-95 transition-transform">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-caps text-label-caps">Customers</span>
+</button>
+<!-- Entries (Active for Transactions) -->
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-stack-md py-unit active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-label-caps text-label-caps">Entries</span>
+</button>
+<!-- Reports -->
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit hover:bg-surface-container-high active:scale-95 transition-transform">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-caps text-label-caps">Reports</span>
+</button>
+</nav>
+<script>
+        // Micro-interactions and Tab Switching logic
+        const tabs = document.querySelectorAll('.flex.gap-stack-sm button');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('bg-primary', 'text-on-primary', 'font-bold');
+                    t.classList.add('bg-surface-container-high', 'text-on-surface-variant', 'font-medium');
+                });
+                tab.classList.add('bg-primary', 'text-on-primary', 'font-bold');
+                tab.classList.remove('bg-surface-container-high', 'text-on-surface-variant', 'font-medium');
+            });
+        });
+
+        // Search Bar Focus Effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary');
+        });
+    </script>
+</body></html>

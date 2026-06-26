@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Chaki Munshi | Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fff8f0",
+                        "on-tertiary-fixed": "#00174b",
+                        "surface-dim": "#e1d9cc",
+                        "tertiary-container": "#97b0ff",
+                        "on-secondary-container": "#54676f",
+                        "surface-container-high": "#efe7da",
+                        "inverse-surface": "#343027",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#e9c349",
+                        "secondary-fixed-dim": "#b5cad3",
+                        "surface-variant": "#eae1d4",
+                        "secondary": "#4e6169",
+                        "tertiary": "#415ba4",
+                        "surface-container-highest": "#eae1d4",
+                        "primary-fixed": "#ffe088",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#f5eddf",
+                        "on-primary-container": "#554300",
+                        "wheat-light": "#F9F5E8",
+                        "secondary-fixed": "#d1e6ef",
+                        "surface-container-low": "#fbf3e5",
+                        "surface-gray": "#F4F7F6",
+                        "on-error-container": "#93000a",
+                        "danger-red": "#D32F2F",
+                        "primary": "#735c00",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#d0c5af",
+                        "on-tertiary-container": "#254188",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#0a1e25",
+                        "on-secondary-fixed-variant": "#374a51",
+                        "surface": "#fff8f0",
+                        "on-surface": "#1f1b13",
+                        "surface-tint": "#735c00",
+                        "on-primary-fixed": "#241a00",
+                        "success-green": "#2E7D32",
+                        "tertiary-fixed-dim": "#b4c5ff",
+                        "inverse-on-surface": "#f8f0e2",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#e9c349",
+                        "surface-bright": "#fff8f0",
+                        "on-tertiary-fixed-variant": "#27438a",
+                        "on-primary-fixed-variant": "#574500",
+                        "outline": "#7f7663",
+                        "on-surface-variant": "#4d4635",
+                        "secondary-container": "#d1e6ef",
+                        "tertiary-fixed": "#dbe1ff",
+                        "primary-container": "#d4af37",
+                        "on-background": "#1f1b13"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "12px",
+                        "container-margin": "16px",
+                        "stack-lg": "24px",
+                        "unit": "4px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "urdu-support": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "urdu-support": ["18px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .urdu-font { font-family: 'Hanken Grotesk', sans-serif; direction: rtl; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky z-40 bg-surface dark:bg-surface-dim flex justify-between items-center px-container-margin py-stack-sm shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold overflow-hidden border-2 border-primary">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional close-up profile picture of a middle-aged South Asian business owner wearing traditional yet clean and modern attire. The lighting is warm and natural, suggesting an outdoor or brightly lit office environment. The background is softly blurred with hints of golden wheat fields and industrial flour milling equipment. The overall aesthetic is trustworthy, grounded, and successful, reflecting the efficiency of a modern SaaS tool." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_oXSsc1V82s4L03TFv09yySs0SfcZNMzNt42eDD_3cIUrbEngxuNLyucsLrF-P0ISmp1QdBZhxxSluq6xs0J9tELQz0p2S-yB4Q6oROzvjzqjG8ijwjZV0BJvyG6seDIr_lSchJMLGFBya6NJK8BIAuAPxzcTaT9zjKJ3HwbSa8rbNEPG9d--uCbPLVBO-AQanmGrlwA3XapBBuRB6nPXnrRuMVKTD6olhyaXRZmSfKJtIV5US983M2n3ZDevzU2dw0rxb2UZ7WA"/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Chaki Munshi</h1>
+</div>
+<button class="px-stack-md py-unit bg-surface-container-low rounded-lg text-primary font-bold hover:bg-surface-container-low transition-colors active:opacity-80">
+            اردو
+        </button>
+</header>
+<main class="px-container-margin pt-stack-md">
+<!-- Hero Section / Greeting -->
+<section class="mb-stack-lg">
+<h2 class="font-headline-md text-headline-md text-on-surface">Asalam-o-Alaikum, Munshi Ji</h2>
+<p class="font-body-md text-on-surface-variant">Here is your mill's performance for today.</p>
+</section>
+<!-- Bento Grid Statistics -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter mb-stack-lg">
+<!-- Today's Wheat -->
+<div class="col-span-1 bg-surface-container-low p-stack-md rounded-xl border border-outline-variant flex flex-col justify-between min-h-[140px]">
+<div>
+<span class="material-symbols-outlined text-primary text-[28px] mb-2" data-icon="grass">grass</span>
+<p class="font-label-caps text-label-caps text-on-surface-variant flex justify-between items-center">
+<span>TODAY'S WHEAT</span>
+<span class="urdu-font text-[10px]">آج کی گندم</span>
+</p>
+</div>
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">1,240 <span class="text-sm font-normal">kg</span></h3>
+<div class="flex items-center gap-1 text-success-green text-xs font-bold mt-1">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+                        +12%
+                    </div>
+</div>
+</div>
+<!-- Today's Flour -->
+<div class="col-span-1 bg-surface-container-low p-stack-md rounded-xl border border-outline-variant flex flex-col justify-between min-h-[140px]">
+<div>
+<span class="material-symbols-outlined text-secondary text-[28px] mb-2" data-icon="bakery_dining">bakery_dining</span>
+<p class="font-label-caps text-label-caps text-on-surface-variant flex justify-between items-center">
+<span>TODAY'S FLOUR</span>
+<span class="urdu-font text-[10px]">آج کا آٹا</span>
+</p>
+</div>
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-secondary">985 <span class="text-sm font-normal">kg</span></h3>
+<div class="flex items-center gap-1 text-on-surface-variant text-xs mt-1">
+<span class="material-symbols-outlined text-xs">history</span>
+                        Avg: 950kg
+                    </div>
+</div>
+</div>
+<!-- Total Sales -->
+<div class="col-span-2 md:col-span-2 bg-primary-container p-stack-md rounded-xl border border-primary flex flex-col justify-between min-h-[140px] relative overflow-hidden">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-on-primary-container text-[28px] mb-2" data-icon="payments">payments</span>
+<p class="font-label-caps text-label-caps text-on-primary-container flex justify-between items-center">
+<span>TOTAL SALES</span>
+<span class="urdu-font text-[10px]">کل فروخت</span>
+</p>
+</div>
+<div class="relative z-10">
+<h3 class="font-headline-lg text-headline-lg text-on-primary-container">Rs. 45,800</h3>
+<p class="text-xs text-on-primary-fixed-variant opacity-80 mt-1">From 42 Transactions Today</p>
+</div>
+<!-- Subtle background design element -->
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[120px]" data-icon="receipt_long">receipt_long</span>
+</div>
+</div>
+<!-- Pending Payments -->
+<div class="col-span-2 bg-surface-container-highest p-stack-md rounded-xl border border-danger-red/20 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-error-container text-on-error-container w-12 h-12 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="pending_actions" style="font-variation-settings: 'FILL' 1;">pending_actions</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-2">
+                            PENDING PAYMENTS <span class="urdu-font text-[10px]">بقایا رقم</span>
+</p>
+<h3 class="font-headline-md text-headline-md text-danger-red">Rs. 12,450</h3>
+</div>
+</div>
+<button class="bg-white px-stack-md py-2 rounded-lg border border-outline-variant text-sm font-bold text-on-surface hover:bg-surface-gray transition-colors">
+                    View All
+                </button>
+</div>
+</div>
+<!-- Quick Actions & Recent Entries -->
+<div class="flex justify-between items-center mb-stack-md">
+<h2 class="font-headline-md text-headline-md text-on-surface">Recent Entries</h2>
+<button class="flex items-center gap-2 bg-primary text-on-primary px-stack-md py-stack-sm rounded-full font-bold shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                New Entry
+            </button>
+</div>
+<!-- Transactions List -->
+<div class="space-y-stack-sm">
+<!-- Entry Card 1 -->
+<div class="bg-white p-stack-md rounded-xl border border-outline-variant flex items-center justify-between hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="bg-wheat-light p-3 rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="scale">scale</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface leading-none">Ahmad Ali</h4>
+<p class="text-xs text-on-surface-variant mt-1">Wheat Entry • INV-2034</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-on-surface">50 kg</p>
+<span class="inline-block px-2 py-0.5 bg-success-green/10 text-success-green text-[10px] font-bold rounded uppercase">Completed</span>
+</div>
+</div>
+<!-- Entry Card 2 -->
+<div class="bg-white p-stack-md rounded-xl border border-outline-variant flex items-center justify-between hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="bg-secondary-fixed p-3 rounded-lg text-secondary">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface leading-none">Chaudhary Bashir</h4>
+<p class="text-xs text-on-surface-variant mt-1">Atta Issue • INV-2035</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-on-surface">Rs. 3,200</p>
+<span class="inline-block px-2 py-0.5 bg-error-container text-danger-red text-[10px] font-bold rounded uppercase">Udhaar</span>
+</div>
+</div>
+<!-- Entry Card 3 -->
+<div class="bg-white p-stack-md rounded-xl border border-outline-variant flex items-center justify-between hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="bg-wheat-light p-3 rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="scale">scale</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface leading-none">Kamran Khan</h4>
+<p class="text-xs text-on-surface-variant mt-1">Wheat Entry • INV-2036</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-on-surface">120 kg</p>
+<span class="inline-block px-2 py-0.5 bg-success-green/10 text-success-green text-[10px] font-bold rounded uppercase">Completed</span>
+</div>
+</div>
+</div>
+<!-- Daily Trend Graph Placeholder -->
+<section class="mt-stack-lg p-stack-md bg-surface-container-low rounded-2xl border border-outline-variant relative overflow-hidden">
+<div class="flex justify-between items-start mb-6 relative z-10">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Grinding Trends</h3>
+<p class="text-xs text-on-surface-variant">Last 7 days performance</p>
+</div>
+<button class="text-primary text-sm font-bold flex items-center gap-1">
+                    Details <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<div class="h-32 w-full flex items-end justify-between gap-2 px-2 relative z-10">
+<div class="w-full bg-primary-fixed-dim rounded-t-lg h-[40%] transition-all hover:h-[50%]"></div>
+<div class="w-full bg-primary-fixed-dim rounded-t-lg h-[65%] transition-all hover:h-[75%]"></div>
+<div class="w-full bg-primary-fixed-dim rounded-t-lg h-[55%] transition-all hover:h-[65%]"></div>
+<div class="w-full bg-primary-fixed-dim rounded-t-lg h-[85%] transition-all hover:h-[95%]"></div>
+<div class="w-full bg-primary-fixed-dim rounded-t-lg h-[70%] transition-all hover:h-[80%]"></div>
+<div class="w-full bg-primary-container rounded-t-lg h-[95%] transition-all hover:h-[100%] shadow-[0_-4px_12px_rgba(115,92,0,0.2)]"></div>
+<div class="w-full bg-primary-fixed-dim rounded-t-lg h-[50%] transition-all hover:h-[60%]"></div>
+</div>
+<div class="flex justify-between mt-2 px-2 text-[10px] font-bold text-on-surface-variant font-label-caps">
+<span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
+</div>
+</section>
+</main>
+<!-- Floating Action Button - Only on appropriate screens as per logic -->
+<div class="fixed bottom-20 right-6 z-50">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[32px]" data-icon="add_task">add_task</span>
+</button>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 h-16 pb-safe flex justify-around items-center border-t border-outline-variant bg-surface dark:bg-surface-container-low">
+<!-- Stats (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-stack-md py-unit active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-caps text-label-caps">Stats</span>
+</a>
+<!-- Customers -->
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit hover:bg-surface-container-high transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-caps text-label-caps">Customers</span>
+</a>
+<!-- Entries -->
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit hover:bg-surface-container-high transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-caps text-label-caps">Entries</span>
+</a>
+<!-- Reports -->
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit hover:bg-surface-container-high transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-label-caps text-label-caps">Reports</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for cards
+        document.querySelectorAll('.bg-white').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+
+        // Simple language toggle simulation
+        let currentLang = 'en';
+        document.querySelector('header button').addEventListener('click', (e) => {
+            if (currentLang === 'en') {
+                e.target.innerText = 'English';
+                currentLang = 'ur';
+            } else {
+                e.target.innerText = 'اردو';
+                currentLang = 'en';
+            }
+        });
+    </script>
+</body></html>

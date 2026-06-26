@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reports | Chaki Munshi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "background": "#fff8f0",
+                "on-tertiary-fixed": "#00174b",
+                "surface-dim": "#e1d9cc",
+                "tertiary-container": "#97b0ff",
+                "on-secondary-container": "#54676f",
+                "surface-container-high": "#efe7da",
+                "inverse-surface": "#343027",
+                "on-error": "#ffffff",
+                "inverse-primary": "#e9c349",
+                "secondary-fixed-dim": "#b5cad3",
+                "surface-variant": "#eae1d4",
+                "secondary": "#4e6169",
+                "tertiary": "#415ba4",
+                "surface-container-highest": "#eae1d4",
+                "primary-fixed": "#ffe088",
+                "on-tertiary": "#ffffff",
+                "error-container": "#ffdad6",
+                "surface-container-lowest": "#ffffff",
+                "surface-container": "#f5eddf",
+                "on-primary-container": "#554300",
+                "wheat-light": "#F9F5E8",
+                "secondary-fixed": "#d1e6ef",
+                "surface-container-low": "#fbf3e5",
+                "surface-gray": "#F4F7F6",
+                "on-error-container": "#93000a",
+                "danger-red": "#D32F2F",
+                "primary": "#735c00",
+                "error": "#ba1a1a",
+                "outline-variant": "#d0c5af",
+                "on-tertiary-container": "#254188",
+                "on-primary": "#ffffff",
+                "on-secondary-fixed": "#0a1e25",
+                "on-secondary-fixed-variant": "#374a51",
+                "surface": "#fff8f0",
+                "on-surface": "#1f1b13",
+                "surface-tint": "#735c00",
+                "on-primary-fixed": "#241a00",
+                "success-green": "#2E7D32",
+                "tertiary-fixed-dim": "#b4c5ff",
+                "inverse-on-surface": "#f8f0e2",
+                "on-secondary": "#ffffff",
+                "primary-fixed-dim": "#e9c349",
+                "surface-bright": "#fff8f0",
+                "on-tertiary-fixed-variant": "#27438a",
+                "on-primary-fixed-variant": "#574500",
+                "outline": "#7f7663",
+                "on-surface-variant": "#4d4635",
+                "secondary-container": "#d1e6ef",
+                "tertiary-fixed": "#dbe1ff",
+                "primary-container": "#d4af37",
+                "on-background": "#1f1b13"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "gutter": "12px",
+                "container-margin": "16px",
+                "stack-lg": "24px",
+                "unit": "4px",
+                "stack-md": "16px",
+                "stack-sm": "8px"
+            },
+            "fontFamily": {
+                "headline-lg": ["Hanken Grotesk"],
+                "headline-md": ["Hanken Grotesk"],
+                "headline-lg-mobile": ["Hanken Grotesk"],
+                "label-caps": ["Hanken Grotesk"],
+                "body-md": ["Hanken Grotesk"],
+                "urdu-support": ["Hanken Grotesk"],
+                "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "urdu-support": ["18px", {"lineHeight": "32px", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #fff8f0;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(127, 118, 99, 0.1);
+        }
+        /* Custom scrollbar for mobile cleanliness */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d0c5af;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-20">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky z-40 bg-surface dark:bg-surface-dim flex justify-between items-center px-container-margin py-stack-sm shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVmD_CxGzarLRbRjq-r2XqZFBJAE-Wd1aoYecNOo5LY6ngRErS42tBGq8Uj5hzWRjBUe1EYedotWVA8MaoPWNc-hxZXMidV3edSmN0m36ajXCDIhDE6UFNB4oifevcZmH2k6aCUuxb1vSsi8P5rv4A1A2l5LR5GgDLlE4siPDMQOQsBjxK-YWOcxe5Q7yCnJ4tkYbWY1tQxYjUr-Oqj_3Rtr5xC3aL-8YXlECr_Dde3Azblse3Zq8qqNkoCYvQ0AInCHfjKnjzkQA"/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary dark:text-primary-fixed">Chaki Munshi</h1>
+</div>
+<button class="px-stack-md py-unit bg-surface-container-low hover:bg-surface-container transition-colors rounded-lg flex items-center gap-2 text-primary font-bold">
+<span class="text-label-caps font-label-caps">اردو</span>
+<span class="material-symbols-outlined text-[18px]">translate</span>
+</button>
+</header>
+<main class="max-w-[1200px] mx-auto px-container-margin py-stack-lg">
+<!-- Header & Action Row -->
+<section class="mb-stack-lg flex flex-col md:flex-row md:items-center justify-between gap-stack-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Reports &amp; Analytics</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Track your mill's performance and transactions</p>
+</div>
+<div class="flex items-center gap-stack-sm">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-stack-md py-3 bg-white border border-outline-variant text-primary font-bold rounded-xl active:scale-95 transition-transform">
+<span class="material-symbols-outlined">print</span>
+<span class="font-label-caps text-label-caps">Print</span>
+</button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-stack-md py-3 bg-primary text-on-primary font-bold rounded-xl active:scale-95 transition-transform shadow-md">
+<span class="material-symbols-outlined">download</span>
+<span class="font-label-caps text-label-caps">Download PDF</span>
+</button>
+</div>
+</section>
+<!-- Date Filters: Bento Style -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-stack-lg">
+<div class="col-span-1 md:col-span-3 flex p-1 bg-surface-container-low rounded-2xl border border-outline-variant/30">
+<button class="flex-1 py-3 text-center rounded-xl font-bold text-primary bg-white shadow-sm transition-all" id="daily-btn">Daily</button>
+<button class="flex-1 py-3 text-center rounded-xl font-bold text-on-surface-variant hover:bg-surface-container transition-all" id="monthly-btn">Monthly</button>
+<button class="flex-1 py-3 text-center rounded-xl font-bold text-on-surface-variant hover:bg-surface-container transition-all" id="yearly-btn">Yearly</button>
+</div>
+<div class="col-span-1 flex items-center gap-2 p-3 bg-white border border-outline-variant rounded-xl cursor-pointer">
+<span class="material-symbols-outlined text-outline">calendar_month</span>
+<span class="text-body-md font-medium text-on-surface">Oct 24, 2023</span>
+</div>
+</section>
+<!-- Summary Cards: Asymmetric Layout -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-stack-lg">
+<!-- Wheat Card -->
+<div class="relative overflow-hidden p-stack-md rounded-3xl bg-wheat-light border border-primary/10 flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Wheat Received</p>
+<h3 class="font-headline-lg text-headline-lg text-primary mt-1">12,450 <span class="text-headline-md opacity-70">kg</span></h3>
+</div>
+<div class="bg-primary-container/20 p-2 rounded-xl">
+<span class="material-symbols-outlined text-primary">grass</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-success-green font-bold">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<span class="text-label-caps">12% from last month</span>
+</div>
+<!-- Abstract visual element -->
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl"></div>
+</div>
+<!-- Flour Card -->
+<div class="relative overflow-hidden p-stack-md rounded-3xl bg-secondary-container/30 border border-secondary/10 flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Flour Issued</p>
+<h3 class="font-headline-lg text-headline-lg text-secondary mt-1">11,820 <span class="text-headline-md opacity-70">kg</span></h3>
+</div>
+<div class="bg-secondary-container p-2 rounded-xl">
+<span class="material-symbols-outlined text-secondary">bakery_dining</span>
+</div>
+</div>
+<div class="text-on-surface-variant font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">cleaning_services</span>
+<span class="text-label-caps">630kg Cleaning Loss</span>
+</div>
+</div>
+<!-- Earnings Card -->
+<div class="relative overflow-hidden p-stack-md rounded-3xl bg-primary text-on-primary shadow-xl flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-caps text-label-caps text-on-primary/70 uppercase tracking-wider">Total Earnings</p>
+<h3 class="font-headline-lg text-headline-lg mt-1">Rs. 84,200</h3>
+</div>
+<div class="bg-white/20 p-2 rounded-xl backdrop-blur-sm">
+<span class="material-symbols-outlined text-on-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-white/10 p-2 rounded-lg backdrop-blur-sm self-start">
+<span class="text-label-caps">Udhaar Pending: Rs. 12,400</span>
+</div>
+</div>
+</section>
+<!-- Transaction List -->
+<section>
+<div class="flex items-center justify-between mb-stack-md px-1">
+<h3 class="font-headline-md text-headline-md">Recent Transactions</h3>
+<button class="text-primary font-bold flex items-center gap-1 hover:underline">
+<span class="text-label-caps">View All</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="space-y-3">
+<!-- Entry 1 -->
+<div class="flex items-center justify-between p-4 bg-white rounded-2xl border border-outline-variant/30 hover:border-primary/30 transition-all shadow-sm group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div>
+<h4 class="font-headline-md text-on-surface">Muhammad Rizwan</h4>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="text-body-md">Invoice #4210</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="text-body-md">2:30 PM</span>
+</div>
+</div>
+</div>
+<div class="text-right flex flex-col items-end gap-1">
+<span class="font-headline-md text-primary">+ Rs. 1,450</span>
+<span class="px-3 py-1 bg-success-green/10 text-success-green text-[12px] font-bold rounded-full border border-success-green/20">Paid</span>
+</div>
+</div>
+<!-- Entry 2 -->
+<div class="flex items-center justify-between p-4 bg-white rounded-2xl border border-outline-variant/30 hover:border-primary/30 transition-all shadow-sm group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div>
+<h4 class="font-headline-md text-on-surface">Abdul Ghani</h4>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="text-body-md">Invoice #4209</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="text-body-md">11:15 AM</span>
+</div>
+</div>
+</div>
+<div class="text-right flex flex-col items-end gap-1">
+<span class="font-headline-md text-on-surface">Rs. 3,200</span>
+<span class="px-3 py-1 bg-danger-red/10 text-danger-red text-[12px] font-bold rounded-full border border-danger-red/20">Udhaar</span>
+</div>
+</div>
+<!-- Entry 3 -->
+<div class="flex items-center justify-between p-4 bg-white rounded-2xl border border-outline-variant/30 hover:border-primary/30 transition-all shadow-sm group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div>
+<h4 class="font-headline-md text-on-surface">Sajid Ali</h4>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="text-body-md">Invoice #4208</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="text-body-md">Yesterday</span>
+</div>
+</div>
+</div>
+<div class="text-right flex flex-col items-end gap-1">
+<span class="font-headline-md text-primary">+ Rs. 850</span>
+<span class="px-3 py-1 bg-success-green/10 text-success-green text-[12px] font-bold rounded-full border border-success-green/20">Paid</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Visualization Hint (Simplified for aesthetic) -->
+<section class="mt-stack-lg">
+<div class="bg-white rounded-3xl border border-outline-variant/30 p-stack-md overflow-hidden relative">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline-md text-primary">Monthly Trend</h4>
+<span class="text-body-md text-on-surface-variant">Oct 1 - Oct 31</span>
+</div>
+<!-- Pseudo-chart using Tailwind -->
+<div class="flex items-end justify-between h-32 gap-2">
+<div class="flex-1 bg-primary/10 h-1/2 rounded-t-lg"></div>
+<div class="flex-1 bg-primary/20 h-2/3 rounded-t-lg"></div>
+<div class="flex-1 bg-primary/10 h-1/3 rounded-t-lg"></div>
+<div class="flex-1 bg-primary/40 h-3/4 rounded-t-lg"></div>
+<div class="flex-1 bg-primary/20 h-1/2 rounded-t-lg"></div>
+<div class="flex-1 bg-primary/60 h-full rounded-t-lg"></div>
+<div class="flex-1 bg-primary/30 h-2/3 rounded-t-lg"></div>
+</div>
+<div class="mt-4 flex justify-between text-label-caps text-on-surface-variant">
+<span>W1</span>
+<span>W2</span>
+<span>W3</span>
+<span>W4</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-16 pb-safe border-t border-outline-variant bg-surface dark:bg-surface-container-low">
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit hover:bg-surface-container-high active:scale-95 transition-transform">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Stats</span>
+</button>
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit hover:bg-surface-container-high active:scale-95 transition-transform">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-caps text-label-caps">Customers</span>
+</button>
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit hover:bg-surface-container-high active:scale-95 transition-transform">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-caps text-label-caps">Entries</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-stack-md py-unit active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assessment</span>
+<span class="font-label-caps text-label-caps">Reports</span>
+</button>
+</nav>
+<script>
+        // Simple Interaction Logic
+        const filterButtons = ['daily-btn', 'monthly-btn', 'yearly-btn'];
+        
+        filterButtons.forEach(btnId => {
+            document.getElementById(btnId).addEventListener('click', function() {
+                filterButtons.forEach(id => {
+                    const el = document.getElementById(id);
+                    el.classList.remove('bg-white', 'shadow-sm', 'text-primary');
+                    el.classList.add('text-on-surface-variant', 'hover:bg-surface-container');
+                });
+                this.classList.remove('text-on-surface-variant', 'hover:bg-surface-container');
+                this.classList.add('bg-white', 'shadow-sm', 'text-primary');
+            });
+        });
+    </script>
+</body></html>

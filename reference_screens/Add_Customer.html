@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add New Customer - Chaki Munshi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#efe7da",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#554300",
+                        "surface": "#fff8f0",
+                        "secondary-fixed": "#d1e6ef",
+                        "on-tertiary-fixed": "#00174b",
+                        "on-secondary-container": "#54676f",
+                        "background": "#fff8f0",
+                        "primary": "#735c00",
+                        "secondary-container": "#d1e6ef",
+                        "success-green": "#2E7D32",
+                        "outline-variant": "#d0c5af",
+                        "inverse-surface": "#343027",
+                        "on-surface": "#1f1b13",
+                        "on-tertiary-fixed-variant": "#27438a",
+                        "primary-fixed-dim": "#e9c349",
+                        "tertiary": "#415ba4",
+                        "primary-container": "#d4af37",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f8f0e2",
+                        "on-primary-fixed": "#241a00",
+                        "surface-variant": "#eae1d4",
+                        "surface-tint": "#735c00",
+                        "on-surface-variant": "#4d4635",
+                        "surface-container-low": "#fbf3e5",
+                        "primary-fixed": "#ffe088",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#eae1d4",
+                        "surface-gray": "#F4F7F6",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#b4c5ff",
+                        "secondary-fixed-dim": "#b5cad3",
+                        "surface-bright": "#fff8f0",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#dbe1ff",
+                        "tertiary-container": "#97b0ff",
+                        "secondary": "#4e6169",
+                        "danger-red": "#D32F2F",
+                        "on-secondary-fixed": "#0a1e25",
+                        "inverse-primary": "#e9c349",
+                        "on-background": "#1f1b13",
+                        "on-secondary-fixed-variant": "#374a51",
+                        "surface-dim": "#e1d9cc",
+                        "on-primary-fixed-variant": "#574500",
+                        "surface-container": "#f5eddf",
+                        "on-tertiary-container": "#254188",
+                        "wheat-light": "#F9F5E8",
+                        "outline": "#7f7663",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "24px",
+                        "stack-md": "16px",
+                        "gutter": "12px",
+                        "unit": "4px",
+                        "stack-sm": "8px",
+                        "container-margin": "16px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "urdu-support": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "urdu-support": ["18px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fff8f0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .form-input-focus:focus-within {
+            border-color: #735c00;
+            box-shadow: 0 0 0 1px #735c00;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-primary-container dark:bg-primary shadow-sm flex justify-between items-center px-container-margin h-16">
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-on-primary-container p-2 active:scale-95 transition-transform" onclick="window.history.back()">arrow_back</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-primary-container dark:text-on-primary">
+                Chaki Munshi / چکی منشی
+            </h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-primary-container">notifications</span>
+<div class="w-8 h-8 rounded-full bg-on-primary-container/20 flex items-center justify-center overflow-hidden">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsNL2P-waHGclvMYPvUjOaNIWhvL2joE_8EyIzQ-u5y0vR2FKz5z-JpF9KXlTn14HnK2TEJF2rqnmbxhKC2o0NSENzvTYYTzucZDEKcxWEMEJRSB2_Nn9RCR8G-vBacPlCrtp60CcyG6yG3i2juYYeO6YAGbVPN57Zu1adSuV7YL7MG0Og-ApL9QL7fqNi-zRPOY0KC1NYvigWjOy-gDQl9nNoeFK6uRGsE6ETCktWJShWzZ9n801NzrOPbCjlBCfI3pHO5k8TRY4"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 pb-32 px-container-margin max-w-lg mx-auto">
+<section class="mb-stack-lg">
+<div class="flex justify-between items-end mb-stack-sm">
+<h2 class="font-headline-md text-headline-md text-primary">Register New Customer</h2>
+<p class="font-urdu-support text-urdu-support text-on-surface-variant text-right">نیا گاہک رجسٹر کریں</p>
+</div>
+<p class="text-on-surface-variant font-body-md">Fill in the details below to create a new customer profile and record their initial balance.</p>
+</section>
+<form class="space-y-stack-md" id="addCustomerForm">
+<!-- Full Name Field -->
+<div class="group">
+<div class="flex justify-between items-center mb-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant">FULL NAME</label>
+<label class="font-urdu-support text-label-caps text-on-surface-variant">مکمل نام</label>
+</div>
+<div class="relative h-14 bg-surface-container-lowest border border-outline-variant rounded-lg flex items-center px-4 form-input-focus transition-all">
+<span class="material-symbols-outlined text-outline mr-3">person</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-body-lg text-on-surface placeholder:text-outline-variant" placeholder="Enter name in English or Urdu" required="" type="text"/>
+</div>
+</div>
+<!-- Phone Number Field -->
+<div class="group">
+<div class="flex justify-between items-center mb-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant">PHONE NUMBER</label>
+<label class="font-urdu-support text-label-caps text-on-surface-variant">فون نمبر</label>
+</div>
+<div class="relative h-14 bg-surface-container-lowest border border-outline-variant rounded-lg flex items-center px-4 form-input-focus transition-all">
+<span class="material-symbols-outlined text-outline mr-3">call</span>
+<span class="text-on-surface font-body-lg mr-2">+92</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-body-lg text-on-surface placeholder:text-outline-variant" pattern="[0-9]{10}" placeholder="300 1234567" required="" title="Please enter 10 digits after +92" type="tel"/>
+</div>
+</div>
+<!-- Address Field -->
+<div class="group">
+<div class="flex justify-between items-center mb-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant">ADDRESS</label>
+<label class="font-urdu-support text-label-caps text-on-surface-variant">پتہ</label>
+</div>
+<div class="relative bg-surface-container-lowest border border-outline-variant rounded-lg p-4 form-input-focus transition-all">
+<div class="flex items-start">
+<span class="material-symbols-outlined text-outline mr-3 mt-1">location_on</span>
+<textarea class="bg-transparent border-none focus:ring-0 w-full font-body-lg text-on-surface placeholder:text-outline-variant resize-none" placeholder="Street, Village or Area" rows="2"></textarea>
+</div>
+</div>
+</div>
+<!-- Opening Balance Field -->
+<div class="group">
+<div class="flex justify-between items-center mb-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant">OPENING BALANCE (UDHAAR)</label>
+<label class="font-urdu-support text-label-caps text-on-surface-variant">ابتدائی ادھار</label>
+</div>
+<div class="relative h-14 bg-wheat-light border border-outline-variant rounded-lg flex items-center px-4 form-input-focus transition-all">
+<span class="material-symbols-outlined text-primary mr-3">payments</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-headline-md text-primary placeholder:text-outline-variant font-bold" placeholder="0.00" type="number" value="0"/>
+<span class="font-label-caps text-on-surface-variant ml-2">PKR</span>
+</div>
+<p class="mt-2 text-on-surface-variant text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">info</span>
+                    Enter 0 if the customer has no previous debt.
+                </p>
+</div>
+<!-- Visual Decorative Card (Bento Style) -->
+<div class="bg-secondary-container/30 rounded-xl p-4 border border-secondary-container flex items-center gap-4 mt-stack-lg">
+<div class="w-16 h-16 rounded-lg bg-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-3xl">verified_user</span>
+</div>
+<div>
+<p class="font-bold text-on-secondary-container">Trust &amp; Verification</p>
+<p class="text-sm text-on-secondary-container/80">Registering a customer allows you to track their wheat stocks and credit history securely.</p>
+</div>
+</div>
+<!-- Submit Button (Fixed at bottom for mobile) -->
+<div class="fixed bottom-24 left-0 w-full px-container-margin z-40">
+<button class="w-full h-14 bg-primary text-on-primary font-bold rounded-full shadow-lg active:scale-[0.98] transition-all flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined">person_add</span>
+                    SAVE CUSTOMER / محفوظ کریں
+                </button>
+</div>
+</form>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-20 pb-safe px-2 bg-surface-container dark:bg-surface-container-high border-t border-outline-variant z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Stats / اعداد</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-fixed text-on-primary-fixed rounded-full px-4 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-label-caps text-label-caps">Customers / گاہک</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-caps text-label-caps">Entries / اندراج</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-caps text-label-caps">Reports / رپورٹ</span>
+</a>
+</nav>
+<script>
+        // Form submission micro-interaction
+        document.getElementById('addCustomerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalContent = btn.innerHTML;
+            
+            btn.disabled = true;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Saving...';
+            
+            setTimeout(() => {
+                btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> SUCCESS';
+                btn.classList.replace('bg-primary', 'bg-success-green');
+                
+                setTimeout(() => {
+                    alert('Customer registered successfully!');
+                    btn.disabled = false;
+                    btn.innerHTML = originalContent;
+                    btn.classList.replace('bg-success-green', 'bg-primary');
+                    e.target.reset();
+                }, 1000);
+            }, 1500);
+        });
+
+        // Add subtle focus animation to inputs
+        const inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.closest('.relative').classList.add('shadow-md');
+            });
+            input.addEventListener('blur', () => {
+                input.closest('.relative').classList.remove('shadow-md');
+            });
+        });
+    </script>
+</body></html>

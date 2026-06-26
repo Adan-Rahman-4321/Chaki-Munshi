@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Customer Management - Chaki Munshi</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#fff8f0",
+                    "on-tertiary-fixed": "#00174b",
+                    "surface-dim": "#e1d9cc",
+                    "tertiary-container": "#97b0ff",
+                    "on-secondary-container": "#54676f",
+                    "surface-container-high": "#efe7da",
+                    "inverse-surface": "#343027",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#e9c349",
+                    "secondary-fixed-dim": "#b5cad3",
+                    "surface-variant": "#eae1d4",
+                    "secondary": "#4e6169",
+                    "tertiary": "#415ba4",
+                    "surface-container-highest": "#eae1d4",
+                    "primary-fixed": "#ffe088",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#f5eddf",
+                    "on-primary-container": "#554300",
+                    "wheat-light": "#F9F5E8",
+                    "secondary-fixed": "#d1e6ef",
+                    "surface-container-low": "#fbf3e5",
+                    "surface-gray": "#F4F7F6",
+                    "on-error-container": "#93000a",
+                    "danger-red": "#D32F2F",
+                    "primary": "#735c00",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#d0c5af",
+                    "on-tertiary-container": "#254188",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#0a1e25",
+                    "on-secondary-fixed-variant": "#374a51",
+                    "surface": "#fff8f0",
+                    "on-surface": "#1f1b13",
+                    "surface-tint": "#735c00",
+                    "on-primary-fixed": "#241a00",
+                    "success-green": "#2E7D32",
+                    "tertiary-fixed-dim": "#b4c5ff",
+                    "inverse-on-surface": "#f8f0e2",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#e9c349",
+                    "surface-bright": "#fff8f0",
+                    "on-tertiary-fixed-variant": "#27438a",
+                    "on-primary-fixed-variant": "#574500",
+                    "outline": "#7f7663",
+                    "on-surface-variant": "#4d4635",
+                    "secondary-container": "#d1e6ef",
+                    "tertiary-fixed": "#dbe1ff",
+                    "primary-container": "#d4af37",
+                    "on-background": "#1f1b13"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "12px",
+                    "container-margin": "16px",
+                    "stack-lg": "24px",
+                    "unit": "4px",
+                    "stack-md": "16px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "urdu-support": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "urdu-support": ["18px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #fff8f0;
+        }
+        .customer-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .customer-card:active {
+            transform: scale(0.98);
+        }
+        .glass-header {
+            backdrop-filter: blur(8px);
+            background-color: rgba(255, 248, 240, 0.85);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface antialiased pb-32">
+<!-- Top AppBar -->
+<header class="w-full top-0 sticky z-40 glass-header flex justify-between items-center px-container-margin py-stack-sm border-b border-outline-variant/30">
+<div class="flex items-center gap-stack-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold overflow-hidden border border-primary/20">
+<img alt="User" data-alt="A professional circular avatar placeholder for a business owner profile, featuring high-contrast initials on a sophisticated gold and teal background. The lighting is soft and corporate, maintaining the trustworthy and grounded identity of the Chaki Munshi brand. The overall style is modern SaaS with a minimalist focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxq8SAD2Nn5XSYCy5n0ofuE_CDwFJR9bscTE1hIvoQYRltSor83mzsrKLbz368jGPQm-pT9ZQ99OyKG5mK9yJIQL9u2ZaLwcggm5qvctyOC6LDAvl6EYmnE_Fa1VHAs5RPlHPVpBEWh5m0hzCGuKO_2cotJ_Ddpir8vNop6yEZ377z9TEk215K0P9vPnXyt9eMtjmFoU3Gqa1dq-q8HMbSko-6IxPQicSwqI1CWkteiAHoy3ysKh2kgXRut5eRyRCIdU0tZgZhKCA"/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Chaki Munshi</h1>
+</div>
+<button class="bg-surface-container-high px-stack-md py-unit rounded-lg text-primary font-bold active:opacity-80 transition-colors">
+            اردو
+        </button>
+</header>
+<!-- Main Content Canvas -->
+<main class="px-container-margin py-stack-md max-w-2xl mx-auto">
+<!-- Search and Summary Section -->
+<section class="mb-stack-lg">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-stack-md top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full h-14 pl-12 pr-stack-md rounded-xl bg-surface-container-lowest border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg" placeholder="Search customer name or phone..." type="text"/>
+</div>
+<div class="mt-stack-md grid grid-cols-2 gap-stack-sm">
+<div class="bg-surface-container-low p-stack-md rounded-xl border border-outline-variant/20">
+<p class="text-label-caps text-on-surface-variant mb-unit uppercase tracking-wider">Total Customers</p>
+<p class="font-headline-md text-headline-md text-primary">142</p>
+</div>
+<div class="bg-surface-container-low p-stack-md rounded-xl border border-outline-variant/20">
+<p class="text-label-caps text-on-surface-variant mb-unit uppercase tracking-wider">Total Udhaar</p>
+<p class="font-headline-md text-headline-md text-danger-red">Rs. 45,800</p>
+</div>
+</div>
+</section>
+<!-- Customer List -->
+<section class="space-y-stack-sm">
+<div class="flex justify-between items-center mb-stack-sm">
+<h2 class="font-headline-md text-headline-md-mobile text-on-surface">Recent Activity</h2>
+<button class="text-primary font-bold text-label-caps uppercase">View All</button>
+</div>
+<!-- Customer Item 1 (Udhaar) -->
+<div class="customer-card bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant flex justify-between items-center">
+<div class="flex gap-stack-md items-center">
+<div class="w-12 h-12 rounded-lg bg-wheat-light flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<h3 class="font-headline-md text-body-lg text-on-surface leading-tight">Muhammad Irfan</h3>
+<p class="text-label-caps text-on-surface-variant">0300-1234567</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-danger-red font-bold text-body-lg">Rs. 2,450</p>
+<span class="px-stack-sm py-0.5 bg-error-container text-on-error-container rounded-full text-[10px] font-bold uppercase">Udhaar</span>
+</div>
+</div>
+<!-- Customer Item 2 (No Balance) -->
+<div class="customer-card bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant flex justify-between items-center">
+<div class="flex gap-stack-md items-center">
+<div class="w-12 h-12 rounded-lg bg-wheat-light flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<h3 class="font-headline-md text-body-lg text-on-surface leading-tight">Basit Ali</h3>
+<p class="text-label-caps text-on-surface-variant">0315-9876543</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-success-green font-bold text-body-lg">Rs. 0</p>
+<span class="px-stack-sm py-0.5 bg-secondary-container text-on-secondary-container rounded-full text-[10px] font-bold uppercase">Paid</span>
+</div>
+</div>
+<!-- Customer Item 3 (Udhaar) -->
+<div class="customer-card bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant flex justify-between items-center">
+<div class="flex gap-stack-md items-center">
+<div class="w-12 h-12 rounded-lg bg-wheat-light flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<h3 class="font-headline-md text-body-lg text-on-surface leading-tight">Saeed Ahmad</h3>
+<p class="text-label-caps text-on-surface-variant">0345-1122334</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-danger-red font-bold text-body-lg">Rs. 12,800</p>
+<span class="px-stack-sm py-0.5 bg-error-container text-on-error-container rounded-full text-[10px] font-bold uppercase">Udhaar</span>
+</div>
+</div>
+<!-- Customer Item 4 (No Balance) -->
+<div class="customer-card bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant flex justify-between items-center opacity-90">
+<div class="flex gap-stack-md items-center">
+<div class="w-12 h-12 rounded-lg bg-wheat-light flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<h3 class="font-headline-md text-body-lg text-on-surface leading-tight">Zahid Khan</h3>
+<p class="text-label-caps text-on-surface-variant">0321-4455667</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-success-green font-bold text-body-lg">Rs. 0</p>
+<span class="px-stack-sm py-0.5 bg-secondary-container text-on-secondary-container rounded-full text-[10px] font-bold uppercase">Paid</span>
+</div>
+</div>
+<!-- Customer Item 5 (Udhaar) -->
+<div class="customer-card bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant flex justify-between items-center">
+<div class="flex gap-stack-md items-center">
+<div class="w-12 h-12 rounded-lg bg-wheat-light flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<h3 class="font-headline-md text-body-lg text-on-surface leading-tight">Umer Farooq</h3>
+<p class="text-label-caps text-on-surface-variant">0333-7788990</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-danger-red font-bold text-body-lg">Rs. 450</p>
+<span class="px-stack-sm py-0.5 bg-error-container text-on-error-container rounded-full text-[10px] font-bold uppercase">Udhaar</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed right-container-margin bottom-20 z-50 w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-xl flex items-center justify-center hover:bg-primary/90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-3xl">person_add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-16 pb-safe border-t border-outline-variant bg-surface dark:bg-surface-container-low">
+<!-- Stats -->
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit hover:bg-surface-container-high transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Stats</span>
+</a>
+<!-- Customers (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-stack-md py-unit active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-label-caps text-label-caps">Customers</span>
+</a>
+<!-- Entries -->
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit hover:bg-surface-container-high transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-caps text-label-caps">Entries</span>
+</a>
+<!-- Reports -->
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit hover:bg-surface-container-high transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-caps text-label-caps">Reports</span>
+</a>
+</nav>
+<script>
+        // Simple search interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        const cards = document.querySelectorAll('.customer-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            cards.forEach(card => {
+                const name = card.querySelector('h3').textContent.toLowerCase();
+                const phone = card.querySelector('p').textContent.toLowerCase();
+                if (name.includes(term) || phone.includes(term)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+
+        // Pull-to-refresh simulation
+        let touchStart = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStart = e.touches[0].pageY;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            const touchEnd = e.changedTouches[0].pageY;
+            if (window.scrollY === 0 && touchEnd - touchStart > 100) {
+                location.reload();
+            }
+        });
+    </script>
+</body></html>

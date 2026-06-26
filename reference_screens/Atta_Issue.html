@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Atta Issue - Chaki Munshi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+      background-color: #F4F7F6;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "outline": "#7f7663",
+            "on-background": "#1f1b13",
+            "error-container": "#ffdad6",
+            "surface-variant": "#eae1d4",
+            "outline-variant": "#d0c5af",
+            "on-error-container": "#93000a",
+            "surface-container-lowest": "#ffffff",
+            "secondary": "#4e6169",
+            "tertiary-fixed-dim": "#b4c5ff",
+            "on-primary-container": "#554300",
+            "surface-bright": "#fff8f0",
+            "on-surface-variant": "#4d4635",
+            "surface-tint": "#735c00",
+            "surface-container-highest": "#eae1d4",
+            "on-secondary-fixed-variant": "#374a51",
+            "secondary-fixed-dim": "#b5cad3",
+            "surface-container-high": "#efe7da",
+            "on-tertiary-fixed": "#00174b",
+            "on-primary-fixed-variant": "#574500",
+            "primary-fixed": "#ffe088",
+            "inverse-on-surface": "#f8f0e2",
+            "on-secondary-fixed": "#0a1e25",
+            "secondary-container": "#d1e6ef",
+            "primary-container": "#d4af37",
+            "secondary-fixed": "#d1e6ef",
+            "on-secondary": "#ffffff",
+            "on-primary": "#ffffff",
+            "on-tertiary-container": "#254188",
+            "surface-container-low": "#fbf3e5",
+            "surface-gray": "#F4F7F6",
+            "on-tertiary": "#ffffff",
+            "danger-red": "#D32F2F",
+            "surface-container": "#f5eddf",
+            "success-green": "#2E7D32",
+            "tertiary-fixed": "#dbe1ff",
+            "inverse-primary": "#e9c349",
+            "tertiary": "#415ba4",
+            "background": "#fff8f0",
+            "on-surface": "#1f1b13",
+            "inverse-surface": "#343027",
+            "primary": "#735c00",
+            "on-primary-fixed": "#241a00",
+            "on-error": "#ffffff",
+            "primary-fixed-dim": "#e9c349",
+            "on-tertiary-fixed-variant": "#27438a",
+            "surface-dim": "#e1d9cc",
+            "surface": "#fff8f0",
+            "wheat-light": "#F9F5E8",
+            "tertiary-container": "#97b0ff",
+            "error": "#ba1a1a",
+            "on-secondary-container": "#54676f"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "stack-lg": "24px",
+            "stack-md": "16px",
+            "gutter": "12px",
+            "stack-sm": "8px",
+            "unit": "4px",
+            "container-margin": "16px"
+          },
+          "fontFamily": {
+            "label-caps": ["Hanken Grotesk"],
+            "body-lg": ["Hanken Grotesk"],
+            "headline-md": ["Hanken Grotesk"],
+            "headline-lg-mobile": ["Hanken Grotesk"],
+            "headline-lg": ["Hanken Grotesk"],
+            "urdu-support": ["Hanken Grotesk"],
+            "body-md": ["Hanken Grotesk"]
+          },
+          "fontSize": {
+            "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+            "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+            "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+            "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "urdu-support": ["18px", {"lineHeight": "32px", "fontWeight": "500"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface-gray min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim w-full top-0 sticky z-40 transition-colors">
+<div class="flex justify-between items-center px-container-margin py-stack-sm w-full">
+<div class="flex items-center gap-stack-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container overflow-hidden">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary dark:text-primary-fixed">Atta Issue</h1>
+</div>
+<button class="text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low transition-colors px-3 py-1 rounded-lg border border-outline-variant font-urdu-support text-urdu-support">
+        اردو
+      </button>
+</div>
+</header>
+<main class="px-container-margin py-stack-md max-w-md mx-auto">
+<!-- Hero / Atmospheric Background (Asymmetric Layout element) -->
+<div class="relative overflow-hidden rounded-xl mb-stack-lg h-32 flex items-center p-stack-md bg-primary">
+
+<div class="relative z-10">
+<p class="text-white font-label-caps text-label-caps opacity-80 uppercase tracking-widest">Transaction Flow</p>
+<h2 class="text-white font-headline-md text-headline-md">Flour Distribution</h2>
+</div>
+<div class="absolute right-[-20px] top-[-10px] opacity-10">
+<span class="material-symbols-outlined text-[120px]" data-icon="grain">grain</span>
+</div>
+</div>
+<!-- Main Entry Form -->
+<div class="space-y-stack-md">
+<!-- Customer Selection -->
+<section class="bg-white p-stack-md rounded-xl border border-outline-variant shadow-sm transition-all hover:shadow-md">
+<div class="flex justify-between items-end mb-unit">
+<label class="font-label-caps text-label-caps text-on-surface-variant flex gap-1 items-center">
+<span class="material-symbols-outlined text-[16px]" data-icon="person_search">person_search</span>
+            CUSTOMER SELECT
+          </label>
+<span class="text-[14px] text-primary font-urdu-support">گاہک منتخب کریں</span>
+</div>
+<div class="relative">
+<select class="w-full h-12 bg-surface-container-lowest border-outline-variant rounded-lg font-body-md text-body-md focus:ring-primary focus:border-primary px-3 appearance-none" id="customer_select">
+<option disabled="" selected="" value="">Select Customer</option>
+<option value="1">Muhammad Ahmed (0300-1234567)</option>
+<option value="2">Zubair Khan (0312-9876543)</option>
+<option value="3">Haji Rashid (0345-1122334)</option>
+</select>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</section>
+<!-- Wheat Reference -->
+<section class="bg-wheat-light p-stack-md rounded-xl border border-outline-variant">
+<div class="flex justify-between items-end mb-unit">
+<label class="font-label-caps text-label-caps text-on-surface-variant flex gap-1 items-center">
+<span class="material-symbols-outlined text-[16px]" data-icon="history">history</span>
+            LINK WHEAT ENTRY
+          </label>
+<span class="text-[14px] text-primary font-urdu-support">گندم کا اندراج منتخب کریں</span>
+</div>
+<div class="flex gap-stack-sm items-center">
+<select class="flex-grow h-12 bg-white border-outline-variant rounded-lg font-body-md text-body-md focus:ring-primary focus:border-primary px-3" id="wheat_link">
+<option disabled="" selected="" value="">Select Pending Wheat</option>
+<option value="w1">ID: #4502 - 120kg Available</option>
+<option value="w2">ID: #4489 - 50kg Available</option>
+</select>
+<button class="bg-secondary text-white px-3 h-12 rounded-lg active:scale-95 transition-transform flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</section>
+<!-- Weight & Rate Grid -->
+<div class="grid grid-cols-2 gap-stack-sm">
+<div class="bg-white p-stack-md rounded-xl border border-outline-variant">
+<div class="flex justify-between items-end mb-unit">
+<label class="font-label-caps text-label-caps text-on-surface-variant">FLOUR (KG)</label>
+</div>
+<input class="w-full text-2xl font-bold border-none p-0 focus:ring-0 placeholder:opacity-20" id="flour_qty" oninput="calculateTotal()" placeholder="0.00" type="number"/>
+<span class="text-[12px] text-on-surface-variant font-urdu-support block border-t border-outline-variant/30 pt-1 mt-1">آٹے کی مقدار (کلو)</span>
+</div>
+<div class="bg-white p-stack-md rounded-xl border border-outline-variant">
+<div class="flex justify-between items-end mb-unit">
+<label class="font-label-caps text-label-caps text-on-surface-variant">RATE (RS)</label>
+</div>
+<input class="w-full text-2xl font-bold border-none p-0 focus:ring-0 text-primary" id="rate_kg" oninput="calculateTotal()" placeholder="0" type="number" value="120"/>
+<span class="text-[12px] text-on-surface-variant font-urdu-support block border-t border-outline-variant/30 pt-1 mt-1">نرخ فی کلو</span>
+</div>
+</div>
+<!-- Total Amount Card -->
+<div class="bg-primary-container p-stack-md rounded-xl flex justify-between items-center text-on-primary-container">
+<div>
+<p class="font-label-caps text-label-caps opacity-80">TOTAL AMOUNT / کل رقم</p>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile" id="display_total">Rs. 0</h3>
+</div>
+<div class="bg-white/20 p-stack-sm rounded-lg backdrop-blur-sm">
+<span class="material-symbols-outlined text-[32px]" data-icon="payments">payments</span>
+</div>
+</div>
+<!-- Payment Section -->
+<section class="bg-white p-stack-md rounded-xl border border-outline-variant space-y-stack-md">
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-stack-sm">PAYMENT METHOD / طریقہ ادائیگی</label>
+<div class="flex gap-2">
+<button class="flex-1 py-stack-sm rounded-lg border border-primary text-primary font-medium transition-all bg-primary-container/20" id="btn_cash" onclick="setMethod('cash')">Cash</button>
+<button class="flex-1 py-stack-sm rounded-lg border border-outline-variant text-on-surface-variant transition-all" id="btn_online" onclick="setMethod('online')">Online</button>
+<button class="flex-1 py-stack-sm rounded-lg border border-outline-variant text-on-surface-variant transition-all" id="btn_credit" onclick="setMethod('credit')">Udhaar</button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-stack-sm border-t border-outline-variant pt-stack-md">
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-unit">PAID AMOUNT</label>
+<input class="w-full h-12 border-outline-variant rounded-lg focus:ring-primary focus:border-primary px-3 text-lg font-bold" id="paid_amount" oninput="calculateBalance()" placeholder="0" type="number"/>
+<span class="text-[12px] text-on-surface-variant font-urdu-support">ادا کردہ رقم</span>
+</div>
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-unit">REMAINING</label>
+<div class="w-full h-12 bg-surface-container flex items-center px-3 rounded-lg text-lg font-bold text-danger-red" id="remaining_balance">0</div>
+<span class="text-[12px] text-on-surface-variant font-urdu-support">باقی رقم (ادھار)</span>
+</div>
+</div>
+</section>
+<!-- Save & Print Button -->
+<button class="w-full bg-primary-container text-on-primary-container h-16 rounded-xl font-bold text-lg flex items-center justify-center gap-stack-sm active:scale-95 transition-transform shadow-lg shadow-primary-container/30">
+<span class="material-symbols-outlined" data-icon="print">print</span>
+<div class="flex flex-col items-start leading-none">
+<span class="text-sm opacity-80 uppercase tracking-tighter">Save &amp; Print Receipt</span>
+<span class="font-urdu-support text-lg">محفوظ کریں اور رسید نکالیں</span>
+</div>
+</button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 border-t border-outline-variant bg-surface dark:bg-surface-container-low transition-colors">
+<div class="flex justify-around items-center w-full h-16 pb-safe">
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit active:scale-95 transition-transform hover:bg-surface-container-high rounded-xl">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Stats</span>
+</button>
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit active:scale-95 transition-transform hover:bg-surface-container-high rounded-xl">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-caps text-label-caps">Customers</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-stack-md py-unit active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-label-caps text-label-caps">Entries</span>
+</button>
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-stack-md py-unit active:scale-95 transition-transform hover:bg-surface-container-high rounded-xl">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-label-caps text-label-caps">Reports</span>
+</button>
+</div>
+</nav>
+<script>
+    let totalVal = 0;
+
+    function calculateTotal() {
+      const qty = parseFloat(document.getElementById('flour_qty').value) || 0;
+      const rate = parseFloat(document.getElementById('rate_kg').value) || 0;
+      totalVal = qty * rate;
+      document.getElementById('display_total').innerText = 'Rs. ' + totalVal.toLocaleString();
+      calculateBalance();
+    }
+
+    function calculateBalance() {
+      const paid = parseFloat(document.getElementById('paid_amount').value) || 0;
+      const balance = totalVal - paid;
+      const balanceEl = document.getElementById('remaining_balance');
+      balanceEl.innerText = balance > 0 ? balance.toLocaleString() : '0';
+      
+      if(balance > 0) {
+        balanceEl.classList.remove('text-success-green');
+        balanceEl.classList.add('text-danger-red');
+      } else {
+        balanceEl.classList.remove('text-danger-red');
+        balanceEl.classList.add('text-success-green');
+      }
+    }
+
+    function setMethod(method) {
+      const btns = ['cash', 'online', 'credit'];
+      btns.forEach(b => {
+        const el = document.getElementById('btn_' + b);
+        el.classList.remove('bg-primary-container/20', 'border-primary', 'text-primary');
+        el.classList.add('border-outline-variant', 'text-on-surface-variant');
+      });
+
+      const activeEl = document.getElementById('btn_' + method);
+      activeEl.classList.remove('border-outline-variant', 'text-on-surface-variant');
+      activeEl.classList.add('bg-primary-container/20', 'border-primary', 'text-primary');
+
+      if (method === 'cash' || method === 'online') {
+        document.getElementById('paid_amount').value = totalVal;
+        calculateBalance();
+      } else if (method === 'credit') {
+        document.getElementById('paid_amount').value = 0;
+        calculateBalance();
+      }
+    }
+
+    // Interactive micro-interaction for the print button
+    const printBtn = document.querySelector('button[data-icon="print"]').parentElement;
+    printBtn.addEventListener('click', () => {
+      printBtn.classList.add('bg-success-green', 'text-white');
+      printBtn.querySelector('.material-symbols-outlined').textContent = 'check_circle';
+      setTimeout(() => {
+        printBtn.classList.remove('bg-success-green', 'text-white');
+        printBtn.querySelector('.material-symbols-outlined').textContent = 'print';
+      }, 2000);
+    });
+  </script>
+</body></html>

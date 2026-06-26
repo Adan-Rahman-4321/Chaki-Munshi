@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Settings - Chaki Munshi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#efe7da",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-container": "#554300",
+                    "surface": "#fff8f0",
+                    "secondary-fixed": "#d1e6ef",
+                    "on-tertiary-fixed": "#00174b",
+                    "on-secondary-container": "#54676f",
+                    "background": "#fff8f0",
+                    "primary": "#735c00",
+                    "secondary-container": "#d1e6ef",
+                    "success-green": "#2E7D32",
+                    "outline-variant": "#d0c5af",
+                    "inverse-surface": "#343027",
+                    "on-surface": "#1f1b13",
+                    "on-tertiary-fixed-variant": "#27438a",
+                    "primary-fixed-dim": "#e9c349",
+                    "tertiary": "#415ba4",
+                    "primary-container": "#d4af37",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f8f0e2",
+                    "on-primary-fixed": "#241a00",
+                    "surface-variant": "#eae1d4",
+                    "surface-tint": "#735c00",
+                    "on-surface-variant": "#4d4635",
+                    "surface-container-low": "#fbf3e5",
+                    "primary-fixed": "#ffe088",
+                    "error": "#ba1a1a",
+                    "surface-container-highest": "#eae1d4",
+                    "surface-gray": "#F4F7F6",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#b4c5ff",
+                    "secondary-fixed-dim": "#b5cad3",
+                    "surface-bright": "#fff8f0",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#dbe1ff",
+                    "tertiary-container": "#97b0ff",
+                    "secondary": "#4e6169",
+                    "danger-red": "#D32F2F",
+                    "on-secondary-fixed": "#0a1e25",
+                    "inverse-primary": "#e9c349",
+                    "on-background": "#1f1b13",
+                    "on-secondary-fixed-variant": "#374a51",
+                    "surface-dim": "#e1d9cc",
+                    "on-primary-fixed-variant": "#574500",
+                    "surface-container": "#f5eddf",
+                    "on-tertiary-container": "#254188",
+                    "wheat-light": "#F9F5E8",
+                    "outline": "#7f7663",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-lg": "24px",
+                    "stack-md": "16px",
+                    "gutter": "12px",
+                    "unit": "4px",
+                    "stack-sm": "8px",
+                    "container-margin": "16px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "urdu-support": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "urdu-support": ["18px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f4f7f6;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
+        }
+        .settings-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+        }
+        @media (max-width: 640px) {
+            .settings-card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface bg-surface-gray min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-container-margin h-16 w-full bg-primary-container dark:bg-primary shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-on-primary-container/20 flex items-center justify-center overflow-hidden border-2 border-on-primary-container/30">
+<img alt="User" class="w-full h-full object-cover" data-alt="A professional studio portrait of a friendly South Asian man in his 40s wearing a clean traditional kurta, representing a modern shop owner. The lighting is soft and natural, with a warm golden hue that reflects the Chaki Munshi brand's agricultural roots. The style is high-end corporate photography with a shallow depth of field, keeping the focus on his welcoming expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmscdWVR_6rVT70CJoxes4Cm8EEZhwVFpo83ZuPKLJLEM1EQrT-7LWAAi3jUS4ZQi1DjC5mi6czOw28xdAy92Z90unPYz24usF-oy2ujMCWrW-YOpgtH5-OOwAT_ruHKiKgwRe-3SCTmMkO_yfB8wXj-Y2jOz9yOupR7mm5kQQ-Niefx_OuYpUFaHS7I-41dCsjG0PSSRKxRFo4njwek6nRQ2xJnjKxkwQ1cCE-tWA8KJEnf_VdlbRC2Sey9NJEOXWDJh33LsLCOA"/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-primary-container dark:text-on-primary">Chaki Munshi / چکی منشی</h1>
+</div>
+<button class="material-symbols-outlined text-on-primary-container dark:text-on-primary text-2xl hover:bg-primary/10 transition-colors active:scale-95 duration-150 p-2 rounded-full">
+            notifications
+        </button>
+</header>
+<main class="pt-24 px-container-margin max-w-[1200px] mx-auto">
+<!-- Hero Section / Brand Context -->
+<div class="mb-stack-lg relative overflow-hidden rounded-xl bg-primary-container p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm border border-outline-variant">
+<div class="z-10 text-center md:text-left">
+<h2 class="font-headline-md text-headline-md text-on-primary-container mb-1">Settings / ترتیبات</h2>
+<p class="font-body-md text-on-primary-container/80">Manage your flour mill business preferences</p>
+</div>
+<div class="hidden md:block w-32 h-32 opacity-20">
+<span class="material-symbols-outlined text-[120px] text-on-primary-container">settings</span>
+</div>
+</div>
+<!-- Settings Options Grid -->
+<div class="settings-card-grid">
+<!-- Shop Profile -->
+<button class="flex flex-col md:flex-row items-center md:items-center gap-4 p-5 bg-surface-container-lowest border border-outline-variant rounded-xl hover:bg-surface-container transition-all active:scale-95 group">
+<div class="w-14 h-14 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-3xl">store</span>
+</div>
+<div class="text-center md:text-left flex-1">
+<p class="font-headline-md text-headline-md leading-tight">Shop Profile</p>
+<p class="font-urdu-support text-urdu-support text-on-surface-variant leading-none">دکان کی پروفائل</p>
+</div>
+<span class="hidden md:block material-symbols-outlined text-outline">chevron_right</span>
+</button>
+<!-- User Management -->
+<button class="flex flex-col md:flex-row items-center md:items-center gap-4 p-5 bg-surface-container-lowest border border-outline-variant rounded-xl hover:bg-surface-container transition-all active:scale-95 group">
+<div class="w-14 h-14 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed group-hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-3xl">manage_accounts</span>
+</div>
+<div class="text-center md:text-left flex-1">
+<p class="font-headline-md text-headline-md leading-tight">Users</p>
+<p class="font-urdu-support text-urdu-support text-on-surface-variant leading-none">صارفین کا انتظام</p>
+</div>
+<span class="hidden md:block material-symbols-outlined text-outline">chevron_right</span>
+</button>
+<!-- Language -->
+<button class="flex flex-col md:flex-row items-center md:items-center gap-4 p-5 bg-surface-container-lowest border border-outline-variant rounded-xl hover:bg-surface-container transition-all active:scale-95 group">
+<div class="w-14 h-14 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed group-hover:bg-tertiary-container transition-colors">
+<span class="material-symbols-outlined text-3xl">translate</span>
+</div>
+<div class="text-center md:text-left flex-1">
+<p class="font-headline-md text-headline-md leading-tight">Language</p>
+<p class="font-urdu-support text-urdu-support text-on-surface-variant leading-none">زبان کا انتخاب</p>
+</div>
+<div class="flex items-center gap-2 bg-surface-variant px-3 py-1 rounded-full">
+<span class="font-label-caps text-label-caps">EN/اردو</span>
+</div>
+</button>
+<!-- Print Settings -->
+<button class="flex flex-col md:flex-row items-center md:items-center gap-4 p-5 bg-surface-container-lowest border border-outline-variant rounded-xl hover:bg-surface-container transition-all active:scale-95 group">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-3xl">print</span>
+</div>
+<div class="text-center md:text-left flex-1">
+<p class="font-headline-md text-headline-md leading-tight">Printer</p>
+<p class="font-urdu-support text-urdu-support text-on-surface-variant leading-none">پرنٹر کی ترتیب</p>
+</div>
+<div class="flex items-center gap-1 text-success-green">
+<span class="material-symbols-outlined text-sm">bluetooth_connected</span>
+<span class="text-[10px] font-bold">ON</span>
+</div>
+</button>
+<!-- Dark Mode Toggle -->
+<div class="flex flex-col md:flex-row items-center md:items-center gap-4 p-5 bg-surface-container-lowest border border-outline-variant rounded-xl hover:bg-surface-container transition-all group">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl" id="theme-icon">light_mode</span>
+</div>
+<div class="text-center md:text-left flex-1">
+<p class="font-headline-md text-headline-md leading-tight">Theme</p>
+<p class="font-urdu-support text-urdu-support text-on-surface-variant leading-none">تھیم بدلیں</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" id="dark-mode-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Backup Data -->
+<button class="flex flex-col md:flex-row items-center md:items-center gap-4 p-5 bg-surface-container-lowest border border-outline-variant rounded-xl hover:bg-surface-container transition-all active:scale-95 group">
+<div class="w-14 h-14 rounded-full bg-on-tertiary-container/10 flex items-center justify-center text-tertiary group-hover:bg-tertiary-fixed transition-colors">
+<span class="material-symbols-outlined text-3xl">cloud_upload</span>
+</div>
+<div class="text-center md:text-left flex-1">
+<p class="font-headline-md text-headline-md leading-tight">Backup</p>
+<p class="font-urdu-support text-urdu-support text-on-surface-variant leading-none">ڈیٹا بیک اپ</p>
+</div>
+<span class="hidden md:block material-symbols-outlined text-outline">sync</span>
+</button>
+</div>
+<!-- Account Actions -->
+<div class="mt-stack-lg space-y-gutter">
+<button class="w-full flex items-center justify-between p-4 bg-white border border-outline-variant rounded-xl hover:bg-danger-red/5 text-danger-red transition-all">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined">logout</span>
+<div class="text-left">
+<p class="font-bold">Logout</p>
+<p class="font-urdu-support text-sm">لاگ آؤٹ</p>
+</div>
+</div>
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+<div class="p-6 text-center text-on-surface-variant/40">
+<p class="font-label-caps text-label-caps">Version 2.4.0 (Pro)</p>
+<p class="text-[10px] mt-1">Made with ❤️ for Wheat Mill Owners</p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-20 pb-safe px-2 bg-surface-container dark:bg-surface-container-high border-t border-outline-variant shadow-lg z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all px-4 py-1 rounded-full active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Stats / اعداد</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all px-4 py-1 rounded-full active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-caps text-label-caps">Customers / گاہک</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all px-4 py-1 rounded-full active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-caps text-label-caps">Entries / اندراج</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-fixed text-on-primary-fixed rounded-full px-4 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-caps text-label-caps">Reports / رپورٹ</span>
+</a>
+</nav>
+<script>
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const htmlElement = document.documentElement;
+        const themeIcon = document.getElementById('theme-icon');
+
+        darkModeToggle.addEventListener('change', () => {
+            if (darkModeToggle.checked) {
+                htmlElement.classList.add('dark');
+                themeIcon.textContent = 'dark_mode';
+            } else {
+                htmlElement.classList.remove('dark');
+                themeIcon.textContent = 'light_mode';
+            }
+        });
+
+        // Simple touch interaction for ripple effect feel
+        document.querySelectorAll('button, a').forEach(elem => {
+            elem.addEventListener('touchstart', () => {
+                elem.classList.add('opacity-70');
+            });
+            elem.addEventListener('touchend', () => {
+                elem.classList.remove('opacity-70');
+            });
+        });
+    </script>
+</body></html>

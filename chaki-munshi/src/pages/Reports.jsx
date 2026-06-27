@@ -133,10 +133,22 @@ export default function Reports() {
             <p className="text-sm mt-1 text-on-surface-variant">Total Flour Issued</p>
           </div>
 
+          <div className="bg-primary/10 border border-primary/30 p-6 rounded-2xl">
+            <h3 className="font-bold text-primary mb-2">Cleaning Revenue</h3>
+            <p className="text-3xl font-extrabold text-primary">Rs {data.cleaningRevenue?.toFixed(2) || '0.00'}</p>
+            <p className="text-sm mt-1 text-on-surface-variant">From Wheat Cleaning Services</p>
+          </div>
+
           <div className="bg-success-green/10 border border-success-green/30 p-6 rounded-2xl">
-            <h3 className="font-bold text-success-green mb-2">Revenue Generated</h3>
-            <p className="text-3xl font-extrabold text-success-green">Rs {data.revenueGenerated.toFixed(2)}</p>
+            <h3 className="font-bold text-success-green mb-2">Grinding Revenue</h3>
+            <p className="text-3xl font-extrabold text-success-green">Rs {data.grindingRevenue?.toFixed(2) || '0.00'}</p>
             <p className="text-sm mt-1 text-on-surface-variant">From Grinding Services</p>
+          </div>
+
+          <div className="bg-secondary/10 border border-secondary/30 p-6 rounded-2xl">
+            <h3 className="font-bold text-secondary mb-2">Flour Revenue</h3>
+            <p className="text-3xl font-extrabold text-secondary">Rs {data.flourRevenue?.toFixed(2) || '0.00'}</p>
+            <p className="text-sm mt-1 text-on-surface-variant">From Flour Sales</p>
           </div>
 
           <div className="bg-error-container/50 border border-error/30 p-6 rounded-2xl">
@@ -150,7 +162,7 @@ export default function Reports() {
               <h3 className="font-bold mb-1">Net Profit</h3>
               <p className="urdu-font text-xs opacity-80">خالص منافع</p>
             </div>
-            <p className="text-3xl sm:text-4xl font-extrabold">Rs {(data.revenueGenerated - data.totalExpenses).toFixed(2)}</p>
+            <p className="text-3xl sm:text-4xl font-extrabold">Rs {data.netProfit?.toFixed(2) || '0.00'}</p>
           </div>
         </div>
       ) : (

@@ -10,7 +10,9 @@ async function getSummaryForRange(startDate, endDate) {
     SELECT 
       COALESCE(SUM(totalWeight), 0) as totalWeight,
       COALESCE(SUM(cleaningWeight), 0) as cleaningWeight,
-      COALESCE(SUM(netWeight), 0) as netWeight
+      COALESCE(SUM(netWeight), 0) as netWeight,
+      COALESCE(SUM(cleaningCharges), 0) as cleaningCharges,
+      COALESCE(SUM(grindingCharges), 0) as grindingCharges
     FROM wheat_entries
     WHERE date(createdAt) BETWEEN date(?) AND date(?)
   `, [startDate, endDate]);
@@ -44,6 +46,8 @@ async function getSummaryForRange(startDate, endDate) {
   const wheatTotal = Number(wheat.totalWeight);
   const wheatCleaning = Number(wheat.cleaningWeight);
   const wheatNet = Number(wheat.netWeight);
+  const cleaningRevenue = Number(wheat.cleaningCharges);
+  const grindingRevenue = Number(wheat.grindingCharges);
   const flourQty = Number(flour.quantity);
   const flourSales = Number(flour.sales);
   const flourCash = Number(flour.cashReceived);
@@ -55,11 +59,13 @@ async function getSummaryForRange(startDate, endDate) {
     cleaningLoss: parseFloat(wheatCleaning.toFixed(2)),
     netWheatProcessed: parseFloat(wheatNet.toFixed(2)),
     totalFlourIssued: parseFloat(flourQty.toFixed(2)),
-    revenueGenerated: Math.round(flourSales),
+    cleaningRevenue: Math.round(cleaningRevenue),
+    grindingRevenue: Math.round(grindingRevenue),
+    flourRevenue: Math.round(flourSales),
     cashReceived: Math.round(flourCash),
     creditIssued: Math.round(flourCredit),
     totalExpenses: Math.round(expensesTotal),
-    netProfit: Math.round(flourSales - expensesTotal),
+    netProfit: Math.round(cleaningRevenue + grindingRevenue + flourSales - expensesTotal),
     expensesBreakdown
   };
 }

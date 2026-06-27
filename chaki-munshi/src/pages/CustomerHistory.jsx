@@ -43,6 +43,31 @@ export default function CustomerHistory() {
     }
   };
 
+  const handleEditEntry = (entryId, type) => {
+    if (type === 'wheat') {
+      navigate(`/wheat-entry/edit/${entryId}`);
+    } else {
+      navigate(`/atta-issue/edit/${entryId}`);
+    }
+  };
+
+  const handleDeleteEntry = async (entryId, type) => {
+    if (!window.confirm(isRtl ? 'کیا آپ واقعی اس اندراج کو حذف کرنا چاہتے ہیں؟' : 'Are you sure you want to delete this entry?')) {
+      return;
+    }
+
+    try {
+      const deleteApi = type === 'wheat' ? api.deleteWheatEntry : api.deleteAttaIssue;
+      const res = await deleteApi(entryId);
+      if (res.success) {
+        setHistory(history.filter(h => h.id !== entryId));
+      }
+    } catch (err) {
+      console.error(err);
+      alert(isRtl ? 'حذف کرنے میں ناکام' : 'Failed to delete entry');
+    }
+  };
+
   if (loading || deleting) return <LoadingSpinner />;
   if (!customer) return <div className="text-center py-12">{t('noCustomers')}</div>;
 
@@ -182,7 +207,10 @@ export default function CustomerHistory() {
               amount={item.amount}
               status={item.status}
               date={item.createdAt}
+              entryId={item.id}
               onClick={() => navigate(`/invoice/${item.type}/${item.id}`)}
+              onEdit={(id) => handleEditEntry(id, item.type)}
+              onDelete={(id) => handleDeleteEntry(id, item.type)}
             />
           ))
         )}

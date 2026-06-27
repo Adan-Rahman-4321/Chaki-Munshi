@@ -8,7 +8,9 @@ import Customers from './pages/Customers';
 import AddCustomer from './pages/AddCustomer';
 import CustomerHistory from './pages/CustomerHistory';
 import WheatEntry from './pages/WheatEntry';
+import EditWheatEntry from './pages/EditWheatEntry';
 import AttaIssue from './pages/AttaIssue';
+import EditAttaIssue from './pages/EditAttaIssue';
 import Transactions from './pages/Transactions';
 import Expenses from './pages/Expenses';
 import Reports from './pages/Reports';
@@ -28,8 +30,10 @@ function App() {
               <Route path="/customer/history/:id" element={<CustomerHistory />} />
               <Route path="/wheat-entry" element={<WheatEntry />} />
               <Route path="/entry/wheat" element={<WheatEntry />} />
+              <Route path="/wheat-entry/edit/:id" element={<EditWheatEntry />} />
               <Route path="/atta-issue" element={<AttaIssue />} />
               <Route path="/entry/flour" element={<AttaIssue />} />
+              <Route path="/atta-issue/edit/:id" element={<EditAttaIssue />} />
               <Route path="/transactions" element={<Transactions />} />
               <Route path="/expenses" element={<Expenses />} />
               <Route path="/reports" element={<Reports />} />

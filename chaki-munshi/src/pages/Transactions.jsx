@@ -4,6 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { api } from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
 import EntryCard from '../components/EntryCard';
+import Swal from 'sweetalert2';
 
 export default function Transactions() {
   const navigate = useNavigate();
@@ -59,7 +60,18 @@ export default function Transactions() {
   };
 
   const handleDelete = async (id, type) => {
-    if (!window.confirm(isRtl ? 'کیا آپ واقعی اس اندراج کو حذف کرنا چاہتے ہیں؟' : 'Are you sure you want to delete this entry?')) {
+    const result = await Swal.fire({
+      title: isRtl ? 'کیا آپ واقعی حذف کرنا چاہتے ہیں؟' : 'Are you sure?',
+      text: isRtl ? 'اس اندراج کو حذف کرنے کے بعد واپس نہیں لایا جا سکتا' : 'You will not be able to recover this entry',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: isRtl ? 'جی ہاں، حذف کریں' : 'Yes, delete it',
+      cancelButtonText: isRtl ? 'منسوخ کریں' : 'Cancel'
+    });
+
+    if (!result.isConfirmed) {
       return;
     }
 
@@ -68,10 +80,21 @@ export default function Transactions() {
       const res = await deleteApi(id);
       if (res.success) {
         setTransactions(transactions.filter(t => t.id !== id));
+        Swal.fire({
+          icon: 'success',
+          title: isRtl ? 'حذف کر دیا گیا!' : 'Deleted!',
+          text: isRtl ? 'اندراج کامیابی سے حذف ہو گیا' : 'Entry has been deleted',
+          confirmButtonColor: '#6d5b00'
+        });
       }
     } catch (err) {
       console.error(err);
-      alert(isRtl ? 'حذف کرنے میں ناکام' : 'Failed to delete entry');
+      Swal.fire({
+        icon: 'error',
+        title: isRtl ? 'خرابی' : 'Error',
+        text: isRtl ? 'حذف کرنے میں ناکام' : 'Failed to delete entry',
+        confirmButtonColor: '#d33'
+      });
     }
   };
 

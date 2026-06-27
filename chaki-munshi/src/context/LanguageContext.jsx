@@ -15,7 +15,7 @@ const translations = {
     settingsTab: 'Settings',
 
     // Dashboard
-    greeting: 'Asalam-o-Alaikum, Munshi Ji',
+    greeting: 'Saif ur Rehman',
     dashboardSub: "Here is your mill's performance for today.",
     todaysWheat: "TODAY'S WHEAT",
     todaysFlour: "TODAY'S FLOUR",
@@ -188,7 +188,7 @@ const translations = {
     settingsTab: 'سیٹنگز',
 
     // Dashboard
-    greeting: 'السلام علیکم، منشی جی',
+    greeting: 'سیف الرحمن',
     dashboardSub: 'آج آپ کی مل کی کارکردگی درج ذیل ہے۔',
     todaysWheat: 'آج کی گندم',
     todaysFlour: 'آج کا آٹا',

@@ -19,6 +19,9 @@ export default function WheatEntry() {
   const [customerId, setCustomerId] = useState(initialCustId);
   const [totalWeight, setTotalWeight] = useState('');
   const [cleaningWeight, setCleaningWeight] = useState('0');
+  const [requiresCleaning, setRequiresCleaning] = useState(false);
+  const [cleaningCharges, setCleaningCharges] = useState('');
+  const [grindingCharges, setGrindingCharges] = useState('');
   const [notes, setNotes] = useState('');
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(true);
@@ -58,6 +61,9 @@ export default function WheatEntry() {
       customerId: parseInt(customerId),
       totalWeight: total,
       cleaningWeight: clean,
+      requiresCleaning: requiresCleaning,
+      cleaningCharges: requiresCleaning ? (parseFloat(cleaningCharges) || 0) : 0,
+      grindingCharges: parseFloat(grindingCharges) || 0,
       notes
     };
 
@@ -180,6 +186,53 @@ export default function WheatEntry() {
           placeholder="0.00"
           value={cleaningWeight}
           onChange={(e) => setCleaningWeight(e.target.value)}
+        />
+
+        {/* Cleaning Option Toggle */}
+        <div className="flex items-center justify-between bg-surface-container-lowest border border-outline-variant rounded-lg p-3">
+          <div>
+            <label className="text-on-surface font-label-caps text-label-caps">REQUIRES CLEANING</label>
+            <p className="urdu-font text-xs text-primary leading-none mt-1">کیا صفائی کی ضرورت ہے؟</p>
+          </div>
+          <button
+            type="button"
+            onClick={() => setRequiresCleaning(!requiresCleaning)}
+            className={`w-12 h-7 rounded-full transition-colors relative ${
+              requiresCleaning ? 'bg-primary' : 'bg-surface-variant'
+            }`}
+          >
+            <span
+              className={`absolute top-1 w-5 h-5 bg-white rounded-full transition-transform shadow-sm ${
+                requiresCleaning ? 'left-6' : 'left-1'
+              }`}
+            />
+          </button>
+        </div>
+
+        {/* Cleaning Charges (shown only if cleaning is required) */}
+        {requiresCleaning && (
+          <FormInput
+            label="CLEANING CHARGES (Rs)"
+            labelUrdu="صفائی کے کرایہ (روپے)"
+            type="number"
+            step="0.01"
+            placeholder="0.00"
+            value={cleaningCharges}
+            onChange={(e) => setCleaningCharges(e.target.value)}
+            required
+          />
+        )}
+
+        {/* Grinding Charges */}
+        <FormInput
+          label="GRINDING CHARGES (Rs)"
+          labelUrdu="پیسائی کے کرایہ (روپے)"
+          type="number"
+          step="0.01"
+          placeholder="0.00"
+          value={grindingCharges}
+          onChange={(e) => setGrindingCharges(e.target.value)}
+          required
         />
 
         {/* Auto-Calculated Net Weight Display Card */}

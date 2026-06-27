@@ -65,7 +65,7 @@ router.get('/:id', async (req, res, next) => {
 // POST /api/wheat-entries - Create new wheat entry
 router.post('/', async (req, res, next) => {
   try {
-    const { customerId, totalWeight, cleaningWeight, notes, createdAt } = req.body;
+    const { customerId, totalWeight, cleaningWeight, notes, createdAt, requiresCleaning, cleaningCharges, grindingCharges } = req.body;
 
     if (!customerId || !totalWeight) {
       return res.status(400).json({ success: false, message: 'Customer ID and Total Weight are required' });
@@ -94,16 +94,22 @@ router.post('/', async (req, res, next) => {
     const cleanW = parseFloat(cleaningWeight) || 0;
     const totalW = parseFloat(totalWeight);
     const netW = totalW - cleanW;
+    const reqClean = requiresCleaning ? 1 : 0;
+    const cleanCharges = parseFloat(cleaningCharges) || 0;
+    const grindCharges = parseFloat(grindingCharges) || 0;
 
     const info = await run(`
-      INSERT INTO wheat_entries (invoiceNo, customerId, totalWeight, cleaningWeight, netWeight, notes, createdAt)
-      VALUES (?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO wheat_entries (invoiceNo, customerId, totalWeight, cleaningWeight, netWeight, requiresCleaning, cleaningCharges, grindingCharges, notes, createdAt)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `, [
       invoiceNo,
       customerId,
       totalW,
       cleanW,
       parseFloat(netW.toFixed(2)),
+      reqClean,
+      cleanCharges,
+      grindCharges,
       notes || '',
       finalCreatedAt
     ]);
@@ -119,7 +125,7 @@ router.post('/', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { totalWeight, cleaningWeight, notes } = req.body;
+    const { totalWeight, cleaningWeight, notes, requiresCleaning, cleaningCharges, grindingCharges } = req.body;
 
     const entry = await get('SELECT * FROM wheat_entries WHERE id = ?', [id]);
     if (!entry) {
@@ -129,12 +135,15 @@ router.put('/:id', async (req, res, next) => {
     const cleanW = cleaningWeight !== undefined ? parseFloat(cleaningWeight) : entry.cleaningWeight;
     const totalW = totalWeight !== undefined ? parseFloat(totalWeight) : entry.totalWeight;
     const netW = totalW - cleanW;
+    const reqClean = requiresCleaning !== undefined ? (requiresCleaning ? 1 : 0) : entry.requiresCleaning;
+    const cleanCharges = cleaningCharges !== undefined ? parseFloat(cleaningCharges) : entry.cleaningCharges;
+    const grindCharges = grindingCharges !== undefined ? parseFloat(grindingCharges) : entry.grindingCharges;
 
     await run(`
       UPDATE wheat_entries 
-      SET totalWeight = ?, cleaningWeight = ?, netWeight = ?, notes = ?
+      SET totalWeight = ?, cleaningWeight = ?, netWeight = ?, requiresCleaning = ?, cleaningCharges = ?, grindingCharges = ?, notes = ?
       WHERE id = ?
-    `, [totalW, cleanW, parseFloat(netW.toFixed(2)), notes !== undefined ? notes : entry.notes, id]);
+    `, [totalW, cleanW, parseFloat(netW.toFixed(2)), reqClean, cleanCharges, grindCharges, notes !== undefined ? notes : entry.notes, id]);
 
     const updatedEntry = await get('SELECT * FROM wheat_entries WHERE id = ?', [id]);
     res.json({ success: true, data: updatedEntry });

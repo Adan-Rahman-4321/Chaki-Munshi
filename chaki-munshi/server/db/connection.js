@@ -70,6 +70,9 @@ const SCHEMA = `
     totalWeight     REAL    NOT NULL,
     cleaningWeight  REAL    NOT NULL DEFAULT 0,
     netWeight       REAL    NOT NULL,
+    requiresCleaning INTEGER NOT NULL DEFAULT 0 CHECK(requiresCleaning IN (0, 1)),
+    cleaningCharges REAL    NOT NULL DEFAULT 0,
+    grindingCharges  REAL    NOT NULL DEFAULT 0,
     notes           TEXT,
     createdAt       TEXT    DEFAULT (datetime('now', 'localtime')),
     FOREIGN KEY (customerId) REFERENCES customers(id) ON DELETE CASCADE

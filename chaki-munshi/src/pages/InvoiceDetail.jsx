@@ -139,6 +139,32 @@ export default function InvoiceDetail() {
               <span className="font-bold text-on-surface">{t('netWeight')}:</span>
               <span className="font-extrabold text-primary">{invoice.netWeight} kg</span>
             </div>
+            {/* Cleaning Charges */}
+            {invoice.requiresCleaning && (
+              <>
+                <div className="flex justify-between text-xs mt-2">
+                  <span className="text-on-surface-variant">Cleaning Required:</span>
+                  <span className="font-bold text-primary">Yes</span>
+                </div>
+                <div className="flex justify-between text-xs">
+                  <span className="text-on-surface-variant">Cleaning Charges:</span>
+                  <span className="font-bold text-on-surface">Rs {invoice.cleaningCharges || 0}</span>
+                </div>
+              </>
+            )}
+            {/* Grinding Charges */}
+            <div className="flex justify-between text-xs">
+              <span className="text-on-surface-variant">Grinding Charges:</span>
+              <span className="font-bold text-on-surface">Rs {invoice.grindingCharges || 0}</span>
+            </div>
+            {/* Total Charges */}
+            <div className="divider border-t border-dashed border-outline-variant/60 my-2"></div>
+            <div className="flex justify-between text-base">
+              <span className="font-bold text-on-surface">Total Charges:</span>
+              <span className="font-extrabold text-primary">
+                Rs {(invoice.cleaningCharges || 0) + (invoice.grindingCharges || 0)}
+              </span>
+            </div>
           </div>
         ) : (
           /* Flour Distribution Details */

@@ -1,22 +1,22 @@
 import express from 'express';
-import db from '../db/connection.js';
+import { all, get } from '../db/connection.js';
 
 const router = express.Router();
 
 // Helper to query report summaries for a given date range
-function getSummaryForRange(startDate, endDate) {
+async function getSummaryForRange(startDate, endDate) {
   // Total Wheat (Net weight and raw weight)
-  const wheat = db.prepare(`
+  const wheat = await get(`
     SELECT 
       COALESCE(SUM(totalWeight), 0) as totalWeight,
       COALESCE(SUM(cleaningWeight), 0) as cleaningWeight,
       COALESCE(SUM(netWeight), 0) as netWeight
     FROM wheat_entries
     WHERE date(createdAt) BETWEEN date(?) AND date(?)
-  `).get(startDate, endDate);
+  `, [startDate, endDate]);
 
   // Total Flour Issued/Sold
-  const flour = db.prepare(`
+  const flour = await get(`
     SELECT 
       COALESCE(SUM(quantity), 0) as quantity,
       COALESCE(SUM(totalAmount), 0) as sales,
@@ -24,46 +24,55 @@ function getSummaryForRange(startDate, endDate) {
       COALESCE(SUM(remainingBalance), 0) as creditAmount
     FROM atta_issues
     WHERE date(createdAt) BETWEEN date(?) AND date(?)
-  `).get(startDate, endDate);
+  `, [startDate, endDate]);
 
   // Total Expenses
-  const expenses = db.prepare(`
+  const expenses = await get(`
     SELECT COALESCE(SUM(amount), 0) as total
     FROM expenses
     WHERE date(createdAt) BETWEEN date(?) AND date(?)
-  `).get(startDate, endDate);
+  `, [startDate, endDate]);
 
   // Category-wise expenses breakdown
-  const expensesBreakdown = db.prepare(`
+  const expensesBreakdown = await all(`
     SELECT category, SUM(amount) as amount
     FROM expenses
     WHERE date(createdAt) BETWEEN date(?) AND date(?)
     GROUP BY category
-  `).all(startDate, endDate);
+  `, [startDate, endDate]);
+
+  const wheatTotal = Number(wheat.totalWeight);
+  const wheatCleaning = Number(wheat.cleaningWeight);
+  const wheatNet = Number(wheat.netWeight);
+  const flourQty = Number(flour.quantity);
+  const flourSales = Number(flour.sales);
+  const flourCash = Number(flour.cashReceived);
+  const flourCredit = Number(flour.creditAmount);
+  const expensesTotal = Number(expenses.total);
 
   return {
-    wheatReceived: parseFloat(wheat.totalWeight.toFixed(2)),
-    cleaningLoss: parseFloat(wheat.cleaningWeight.toFixed(2)),
-    netWheatProcessed: parseFloat(wheat.netWeight.toFixed(2)),
-    flourIssued: parseFloat(flour.quantity.toFixed(2)),
-    totalEarnings: Math.round(flour.sales),
-    cashReceived: Math.round(flour.cashReceived),
-    creditIssued: Math.round(flour.creditAmount),
-    totalExpenses: Math.round(expenses.total),
-    netProfit: Math.round(flour.sales - expenses.total),
+    wheatReceived: parseFloat(wheatTotal.toFixed(2)),
+    cleaningLoss: parseFloat(wheatCleaning.toFixed(2)),
+    netWheatProcessed: parseFloat(wheatNet.toFixed(2)),
+    flourIssued: parseFloat(flourQty.toFixed(2)),
+    totalEarnings: Math.round(flourSales),
+    cashReceived: Math.round(flourCash),
+    creditIssued: Math.round(flourCredit),
+    totalExpenses: Math.round(expensesTotal),
+    netProfit: Math.round(flourSales - expensesTotal),
     expensesBreakdown
   };
 }
 
 // GET /api/reports/daily?date=YYYY-MM-DD
-router.get('/daily', (req, res, next) => {
+router.get('/daily', async (req, res, next) => {
   try {
     const { date } = req.query;
     if (!date) {
       return res.status(400).json({ success: false, message: 'Date parameter is required' });
     }
 
-    const summary = getSummaryForRange(date, date);
+    const summary = await getSummaryForRange(date, date);
     res.json({ success: true, data: summary });
   } catch (err) {
     next(err);
@@ -71,7 +80,7 @@ router.get('/daily', (req, res, next) => {
 });
 
 // GET /api/reports/monthly?year=YYYY&month=MM
-router.get('/monthly', (req, res, next) => {
+router.get('/monthly', async (req, res, next) => {
   try {
     const { year, month } = req.query;
     if (!year || !month) {
@@ -83,7 +92,7 @@ router.get('/monthly', (req, res, next) => {
     const lastDay = new Date(year, month, 0).getDate();
     const end = `${year}-${String(month).padStart(2, '0')}-${String(lastDay).padStart(2, '0')}`;
 
-    const summary = getSummaryForRange(start, end);
+    const summary = await getSummaryForRange(start, end);
     res.json({ success: true, data: summary });
   } catch (err) {
     next(err);
@@ -91,7 +100,7 @@ router.get('/monthly', (req, res, next) => {
 });
 
 // GET /api/reports/yearly?year=YYYY
-router.get('/yearly', (req, res, next) => {
+router.get('/yearly', async (req, res, next) => {
   try {
     const { year } = req.query;
     if (!year) {
@@ -101,7 +110,7 @@ router.get('/yearly', (req, res, next) => {
     const start = `${year}-01-01`;
     const end = `${year}-12-31`;
 
-    const summary = getSummaryForRange(start, end);
+    const summary = await getSummaryForRange(start, end);
     res.json({ success: true, data: summary });
   } catch (err) {
     next(err);

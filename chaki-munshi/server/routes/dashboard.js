@@ -1,47 +1,47 @@
 import express from 'express';
-import db from '../db/connection.js';
+import { all, get } from '../db/connection.js';
 
 const router = express.Router();
 
 // GET /api/dashboard
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     // 1. Today's Date bounds (in YYYY-MM-DD local format)
     const todayStr = new Date().toISOString().split('T')[0];
-    
+
     // 2. Today's Wheat Total (Net weight in kg)
-    const wheatQuery = db.prepare(`
+    const todayWheatRow = await get(`
       SELECT COALESCE(SUM(netWeight), 0) as total 
       FROM wheat_entries 
       WHERE date(createdAt) = date(?)
-    `);
-    const todayWheat = wheatQuery.get(todayStr).total;
+    `, [todayStr]);
+    const todayWheat = Number(todayWheatRow.total);
 
     // 3. Today's Flour Total (Quantity in kg)
-    const flourQuery = db.prepare(`
+    const todayFlourRow = await get(`
       SELECT COALESCE(SUM(quantity), 0) as total 
       FROM atta_issues 
       WHERE date(createdAt) = date(?)
-    `);
-    const todayFlour = flourQuery.get(todayStr).total;
+    `, [todayStr]);
+    const todayFlour = Number(todayFlourRow.total);
 
     // 4. Today's Total Sales (totalAmount in Rs)
-    const salesQuery = db.prepare(`
+    const todaySalesRow = await get(`
       SELECT COALESCE(SUM(totalAmount), 0) as total 
       FROM atta_issues 
       WHERE date(createdAt) = date(?)
-    `);
-    const todaySales = salesQuery.get(todayStr).total;
+    `, [todayStr]);
+    const todaySales = Number(todaySalesRow.total);
 
     // 5. Total Pending Payments (Remaining balance of all time)
-    const pendingQuery = db.prepare(`
+    const pendingRow = await get(`
       SELECT COALESCE(SUM(remainingBalance), 0) as total 
       FROM atta_issues
     `);
-    const pendingPayments = pendingQuery.get().total;
+    const pendingPayments = Number(pendingRow.total);
 
     // 6. Recent Entries (Union of WheatEntries and AttaIssues, limited to 10)
-    const recentEntriesQuery = db.prepare(`
+    const recentEntries = await all(`
       SELECT * FROM (
         SELECT 
           'wheat' as type,
@@ -77,28 +77,27 @@ router.get('/', (req, res, next) => {
       ORDER BY createdAt DESC
       LIMIT 10
     `);
-    const recentEntries = recentEntriesQuery.all();
 
     // 7. Grinding Trends (Last 7 Days)
     const trends = [];
     const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-    
+
     for (let i = 6; i >= 0; i--) {
       const d = new Date();
       d.setDate(d.getDate() - i);
       const dateStr = d.toISOString().split('T')[0];
       const dayLabel = days[d.getDay()];
-      
-      const dayTotal = db.prepare(`
+
+      const dayRow = await get(`
         SELECT COALESCE(SUM(netWeight), 0) as total 
         FROM wheat_entries 
         WHERE date(createdAt) = date(?)
-      `).get(dateStr).total;
-      
+      `, [dateStr]);
+
       trends.push({
         day: dayLabel,
         date: dateStr,
-        total: dayTotal
+        total: Number(dayRow.total)
       });
     }
 

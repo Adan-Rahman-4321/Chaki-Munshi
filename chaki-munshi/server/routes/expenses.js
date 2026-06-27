@@ -1,10 +1,10 @@
 import express from 'express';
-import db from '../db/connection.js';
+import { all, get, run } from '../db/connection.js';
 
 const router = express.Router();
 
 // GET /api/expenses - List all expenses with optional filters
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const { date, category } = req.query;
     let queryStr = 'SELECT * FROM expenses';
@@ -26,7 +26,7 @@ router.get('/', (req, res, next) => {
 
     queryStr += ' ORDER BY createdAt DESC';
 
-    const expenses = db.prepare(queryStr).all(...params);
+    const expenses = await all(queryStr, params);
     res.json({ success: true, data: expenses });
   } catch (err) {
     next(err);
@@ -34,10 +34,10 @@ router.get('/', (req, res, next) => {
 });
 
 // POST /api/expenses - Add new expense
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const { category, description, amount, createdAt } = req.body;
-    
+
     if (!category || !amount) {
       return res.status(400).json({ success: false, message: 'Category and Amount are required' });
     }
@@ -49,12 +49,12 @@ router.post('/', (req, res, next) => {
 
     const finalCreatedAt = createdAt || new Date().toISOString().replace('T', ' ').substring(0, 19);
 
-    const info = db.prepare(`
+    const info = await run(`
       INSERT INTO expenses (category, description, amount, createdAt)
       VALUES (?, ?, ?, ?)
-    `).run(category, description || '', parseFloat(amount), finalCreatedAt);
+    `, [category, description || '', parseFloat(amount), finalCreatedAt]);
 
-    const newExpense = db.prepare('SELECT * FROM expenses WHERE id = ?').get(info.lastInsertRowid);
+    const newExpense = await get('SELECT * FROM expenses WHERE id = ?', [info.lastInsertRowid]);
     res.status(201).json({ success: true, data: newExpense });
   } catch (err) {
     next(err);
@@ -62,12 +62,12 @@ router.post('/', (req, res, next) => {
 });
 
 // PUT /api/expenses/:id - Update an expense
-router.put('/:id', (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
     const { category, description, amount } = req.body;
 
-    const expense = db.prepare('SELECT * FROM expenses WHERE id = ?').get(id);
+    const expense = await get('SELECT * FROM expenses WHERE id = ?', [id]);
     if (!expense) {
       return res.status(404).json({ success: false, message: 'Expense record not found' });
     }
@@ -79,18 +79,18 @@ router.put('/:id', (req, res, next) => {
       }
     }
 
-    db.prepare(`
+    await run(`
       UPDATE expenses 
       SET category = ?, description = ?, amount = ?
       WHERE id = ?
-    `).run(
-      category || expense.category, 
-      description !== undefined ? description : expense.description, 
-      amount !== undefined ? parseFloat(amount) : expense.amount, 
+    `, [
+      category || expense.category,
+      description !== undefined ? description : expense.description,
+      amount !== undefined ? parseFloat(amount) : expense.amount,
       id
-    );
+    ]);
 
-    const updatedExpense = db.prepare('SELECT * FROM expenses WHERE id = ?').get(id);
+    const updatedExpense = await get('SELECT * FROM expenses WHERE id = ?', [id]);
     res.json({ success: true, data: updatedExpense });
   } catch (err) {
     next(err);
@@ -98,15 +98,15 @@ router.put('/:id', (req, res, next) => {
 });
 
 // DELETE /api/expenses/:id - Delete an expense record
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
-    const expense = db.prepare('SELECT * FROM expenses WHERE id = ?').get(id);
+    const expense = await get('SELECT * FROM expenses WHERE id = ?', [id]);
     if (!expense) {
       return res.status(404).json({ success: false, message: 'Expense record not found' });
     }
 
-    db.prepare('DELETE FROM expenses WHERE id = ?').run(id);
+    await run('DELETE FROM expenses WHERE id = ?', [id]);
     res.json({ success: true, message: 'Expense deleted successfully' });
   } catch (err) {
     next(err);

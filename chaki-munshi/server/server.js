@@ -3,6 +3,8 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import { initDb } from './db/connection.js';
+
 // Import route handlers
 import dashboardRouter from './routes/dashboard.js';
 import customersRouter from './routes/customers.js';
@@ -34,8 +36,10 @@ app.use('/api/reports', reportsRouter);
 const frontendBuildPath = path.join(__dirname, '../dist');
 app.use(express.static(frontendBuildPath));
 
-// Fallback all other routes to React app (Single Page App routing)
-app.get('*', (req, res) => {
+// Fallback non-API GET requests to the React app (Single Page App routing).
+// Express 5 no longer accepts a bare '*' route, so use a middleware instead.
+app.use((req, res, next) => {
+  if (req.method !== 'GET' || req.path.startsWith('/api')) return next();
   res.sendFile(path.join(frontendBuildPath, 'index.html'));
 });
 
@@ -48,7 +52,14 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start the listener
-app.listen(PORT, () => {
-  console.log(`🚀 Chaki Munshi Server running on http://localhost:${PORT}`);
-});
+// Initialize the cloud database, then start the listener
+initDb()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`🚀 Chaki Munshi Server running on http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('❌ Failed to initialize database:', err.message || err);
+    process.exit(1);
+  });

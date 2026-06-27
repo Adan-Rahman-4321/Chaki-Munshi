@@ -1,0 +1,15 @@
+# Secrets - never commit
+Dtabase_Details.txt
+*.env
+.env
+.env.*
+
+# Dependencies / build
+node_modules/
+chaki-munshi/node_modules/
+chaki-munshi/dist/
+
+# Local SQLite files
+*.db
+*.db-shm
+*.db-wal

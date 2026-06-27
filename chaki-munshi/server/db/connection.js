@@ -1,44 +1,58 @@
 // ============================================================================
 // Chaki Munshi - Database Connection & Schema Setup
-// Uses better-sqlite3 for synchronous, high-performance SQLite access
+// Uses Turso (libSQL) cloud database via @libsql/client (async).
+//
+// Required environment variables:
+//   TURSO_DATABASE_URL  e.g. libsql://your-db-name.turso.io
+//   TURSO_AUTH_TOKEN    your Turso auth token
 // ============================================================================
 
-import Database from 'better-sqlite3';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import fs from 'fs';
+import 'dotenv/config';
+import { createClient } from '@libsql/client';
 
-// Resolve __dirname for ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const url = process.env.TURSO_DATABASE_URL;
+const authToken = process.env.TURSO_AUTH_TOKEN;
 
-// Database file path - stored in server/db/chaki_munshi.db
-const DB_PATH = path.join(__dirname, 'chaki_munshi.db');
-
-// Ensure the db directory exists
-const dbDir = path.dirname(DB_PATH);
-if (!fs.existsSync(dbDir)) {
-  fs.mkdirSync(dbDir, { recursive: true });
+if (!url) {
+  throw new Error(
+    'TURSO_DATABASE_URL is not set. Create a Turso database and add the URL ' +
+    '(and TURSO_AUTH_TOKEN) to your environment or a .env file.'
+  );
 }
 
-// Create and configure the database connection
-const db = new Database(DB_PATH);
-
-// Enable WAL mode for better concurrent read performance
-db.pragma('journal_mode = WAL');
-
-// Enable foreign key enforcement (off by default in SQLite)
-db.pragma('foreign_keys = ON');
+// Cloud database client (libSQL / SQLite-compatible)
+const db = createClient({ url, authToken });
 
 // ============================================================================
-// Schema Initialization - Creates tables if they don't exist
+// Query helpers (libSQL is async, so all DB access returns Promises)
+//   get(sql, args) -> single row (or undefined)
+//   all(sql, args) -> array of rows
+//   run(sql, args) -> { lastInsertRowid, changes }
 // ============================================================================
 
-db.exec(`
-  -- =========================================================================
+export async function all(sql, args = []) {
+  const rs = await db.execute({ sql, args });
+  return rs.rows;
+}
+
+export async function get(sql, args = []) {
+  const rs = await db.execute({ sql, args });
+  return rs.rows[0];
+}
+
+export async function run(sql, args = []) {
+  const rs = await db.execute({ sql, args });
+  return {
+    lastInsertRowid: rs.lastInsertRowid != null ? Number(rs.lastInsertRowid) : null,
+    changes: rs.rowsAffected,
+  };
+}
+
+// ============================================================================
+// Schema - created automatically on startup if it does not exist
+// ============================================================================
+const SCHEMA = `
   -- Customers Table
-  -- Stores wheat mill customer information
-  -- =========================================================================
   CREATE TABLE IF NOT EXISTS customers (
     id          INTEGER PRIMARY KEY AUTOINCREMENT,
     name        TEXT    NOT NULL,
@@ -48,13 +62,7 @@ db.exec(`
     updatedAt   TEXT    DEFAULT (datetime('now', 'localtime'))
   );
 
-  -- =========================================================================
   -- Wheat Entries Table
-  -- Records wheat brought in by customers for grinding
-  -- totalWeight:    raw wheat weight as received
-  -- cleaningWeight: waste removed during cleaning (stones, husk, etc.)
-  -- netWeight:      actual wheat sent for grinding (totalWeight - cleaningWeight)
-  -- =========================================================================
   CREATE TABLE IF NOT EXISTS wheat_entries (
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
     invoiceNo       TEXT    UNIQUE NOT NULL,
@@ -67,11 +75,7 @@ db.exec(`
     FOREIGN KEY (customerId) REFERENCES customers(id) ON DELETE CASCADE
   );
 
-  -- =========================================================================
   -- Atta (Flour) Issues Table
-  -- Records flour issued/sold to customers
-  -- Can optionally link to a wheat entry for traceability
-  -- =========================================================================
   CREATE TABLE IF NOT EXISTS atta_issues (
     id                INTEGER PRIMARY KEY AUTOINCREMENT,
     invoiceNo         TEXT    UNIQUE NOT NULL,
@@ -88,10 +92,7 @@ db.exec(`
     FOREIGN KEY (wheatEntryId) REFERENCES wheat_entries(id)  ON DELETE SET NULL
   );
 
-  -- =========================================================================
   -- Expenses Table
-  -- Tracks operational expenses of the wheat mill
-  -- =========================================================================
   CREATE TABLE IF NOT EXISTS expenses (
     id          INTEGER PRIMARY KEY AUTOINCREMENT,
     category    TEXT    NOT NULL CHECK(category IN ('Electricity', 'Labor', 'Maintenance', 'Fuel', 'Other')),
@@ -100,33 +101,34 @@ db.exec(`
     createdAt   TEXT    DEFAULT (datetime('now', 'localtime'))
   );
 
-  -- =========================================================================
-  -- Indexes for frequently queried columns
-  -- =========================================================================
+  -- Indexes
   CREATE INDEX IF NOT EXISTS idx_wheat_entries_customerId  ON wheat_entries(customerId);
   CREATE INDEX IF NOT EXISTS idx_wheat_entries_createdAt   ON wheat_entries(createdAt);
   CREATE INDEX IF NOT EXISTS idx_wheat_entries_invoiceNo   ON wheat_entries(invoiceNo);
-
   CREATE INDEX IF NOT EXISTS idx_atta_issues_customerId    ON atta_issues(customerId);
   CREATE INDEX IF NOT EXISTS idx_atta_issues_createdAt     ON atta_issues(createdAt);
   CREATE INDEX IF NOT EXISTS idx_atta_issues_invoiceNo     ON atta_issues(invoiceNo);
-
   CREATE INDEX IF NOT EXISTS idx_expenses_createdAt        ON expenses(createdAt);
   CREATE INDEX IF NOT EXISTS idx_expenses_category         ON expenses(category);
-
   CREATE INDEX IF NOT EXISTS idx_customers_name            ON customers(name);
 
-  -- =========================================================================
-  -- Trigger: Auto-update the updatedAt field on customer modifications
-  -- =========================================================================
+  -- Trigger: auto-update updatedAt on customer changes
   CREATE TRIGGER IF NOT EXISTS trg_customers_updatedAt
     AFTER UPDATE ON customers
     FOR EACH ROW
   BEGIN
     UPDATE customers SET updatedAt = datetime('now', 'localtime') WHERE id = OLD.id;
   END;
-`);
+`;
 
-console.log('✅ Database initialized at:', DB_PATH);
+let initialized = false;
+
+// Run schema setup once at startup. Safe to call multiple times.
+export async function initDb() {
+  if (initialized) return;
+  await db.executeMultiple(SCHEMA);
+  initialized = true;
+  console.log('✅ Database schema ready (Turso/libSQL)');
+}
 
 export default db;

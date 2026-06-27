@@ -211,7 +211,7 @@ export default function Dashboard() {
       </section>
 
       {/* Floating Action Button (FAB) */}
-      <div className="fixed bottom-5 right-4 sm:right-6 z-30 pb-safe">
+      <div className="fixed bottom-20 right-4 sm:right-6 z-40 pb-safe lg:hidden">
         <button 
           onClick={() => setShowEntryModal(true)}
           className="w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center button-click"

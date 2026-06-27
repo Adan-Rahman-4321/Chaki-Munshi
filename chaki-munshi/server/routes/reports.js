@@ -51,11 +51,11 @@ async function getSummaryForRange(startDate, endDate) {
   const expensesTotal = Number(expenses.total);
 
   return {
-    wheatReceived: parseFloat(wheatTotal.toFixed(2)),
+    totalWheatReceived: parseFloat(wheatTotal.toFixed(2)),
     cleaningLoss: parseFloat(wheatCleaning.toFixed(2)),
     netWheatProcessed: parseFloat(wheatNet.toFixed(2)),
-    flourIssued: parseFloat(flourQty.toFixed(2)),
-    totalEarnings: Math.round(flourSales),
+    totalFlourIssued: parseFloat(flourQty.toFixed(2)),
+    revenueGenerated: Math.round(flourSales),
     cashReceived: Math.round(flourCash),
     creditIssued: Math.round(flourCredit),
     totalExpenses: Math.round(expensesTotal),
